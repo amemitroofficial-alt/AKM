@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome - AKM</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #000;
+            overflow: hidden;
+        }
+
+        /* 🔥 ZOOM OUT ANIMATION */
+        .zoom-container {
+            width: 100%;
+            height: 100vh;
+            background: url('1000213950.png') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: zoomOut 1.5s ease forwards;
+        }
+
+        @keyframes zoomOut {
+            from {
+                transform: scale(1.4);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        /* 🔥 CENTER BOX */
+        .card {
+            background: rgba(0,0,0,0.6);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            width: 80%;
+            max-width: 350px;
+        }
+
+        /* 🔥 TITLE */
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /* 🔥 BUTTON */
+        .start-btn {
+            padding: 12px 25px;
+            font-size: 18px;
+            background: orange;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .start-btn:hover {
+            background: darkorange;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="zoom-container">
+    <div class="card">
+        <div class="title">
+            AME KALYAN<br>MITRO GROUP
+        </div>
+
+        <button class="start-btn" onclick="startApp()">Start</button>
+    </div>
+</div>
+
+<script>
+function startApp() {
+    window.location.href = "generator.html"; // 🔥 tumhara main page
+}
+</script>
+
+</body>
+</html>
