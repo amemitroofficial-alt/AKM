@@ -13,22 +13,23 @@
         .container {
             position: relative;
             display: inline-block;
-        }
-
-        /* 🔥 BIG TEMPLATE */
-        .template {
             width: 100%;
             max-width: 1200px;
         }
 
-        /* 🔥 FINAL POSITION (PERFECT BELOW LOGO) */
+        /* TEMPLATE */
+        .template {
+            width: 100%;
+        }
+
+        /* 🔥 RESPONSIVE PHOTO BOX */
         .photo-box {
             position: absolute;
-            top: 210px;   /* 👈 FINAL FIX (logo se safe gap) */
+            top: 28%;   /* 🔥 responsive */
             left: 50%;
             transform: translateX(-50%);
-            width: 340px;
-            height: 340px;
+            width: 28%;  /* 🔥 responsive */
+            height: 28%;
             overflow: hidden;
             border-radius: 20px;
         }
@@ -70,7 +71,7 @@
 
 <br><br>
 
-<div class="container">
+<div class="container" id="capture">
     <img id="template" src="1000213950.png" class="template">
 
     <div class="photo-box">
@@ -112,6 +113,7 @@ function downloadImage() {
     canvas.width = originalWidth;
     canvas.height = originalHeight;
 
+    // draw template
     ctx.drawImage(template, 0, 0);
 
     let img = new Image();
@@ -119,17 +121,15 @@ function downloadImage() {
 
     img.onload = function () {
 
-        let scaleX = originalWidth / template.width;
+        // 🔥 RESPONSIVE VALUES (MATCH CSS)
+        let topPercent = 0.28;
+        let sizePercent = 0.28;
 
-        // 👇 SAME AS CSS
-        let cssTop = 210;   // 🔥 FINAL FIX
-        let cssSize = 340;
-
-        let realSize = cssSize * scaleX;
+        let realSize = originalWidth * sizePercent;
         let x = (originalWidth / 2) - (realSize / 2);
-        let y = cssTop * scaleX;
+        let y = originalHeight * topPercent;
 
-        // 🔥 COVER LOGIC
+        // 🔥 NO STRETCH (COVER)
         let imgRatio = img.width / img.height;
         let boxRatio = 1;
 
