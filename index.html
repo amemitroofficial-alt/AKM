@@ -8,6 +8,7 @@
             text-align: center;
             font-family: Arial;
             background: #f5f5f5;
+            margin-bottom: 100px; /* space for fixed button */
         }
 
         .logo {
@@ -16,13 +17,13 @@
         }
 
         .main-heading {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
             margin-top: 10px;
         }
 
         .sub-text {
-            font-size: 18px;
+            font-size: 16px;
             margin: 10px;
             color: #555;
         }
@@ -38,7 +39,7 @@
             width: 100%;
         }
 
-        /* 🔥 FINAL PERFECT POSITION (DON'T CHANGE AGAIN) */
+        /* 🔥 PERFECT PHOTO POSITION */
         .photo-box {
             position: absolute;
             top: 26%;
@@ -56,23 +57,50 @@
             object-fit: cover;
         }
 
-        input, button {
+        input {
             margin: 10px;
-            padding: 10px 20px;
+            padding: 10px;
             font-size: 16px;
         }
 
         button {
-            background: orange;
-            border: none;
-            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
             border-radius: 8px;
+            border: none;
             cursor: pointer;
+        }
+
+        .preview-btn {
+            background: orange;
+            color: white;
+        }
+
+        /* 🔥 FIXED DOWNLOAD BUTTON */
+        .download-btn {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: green;
+            color: white;
+            font-size: 18px;
+            padding: 15px;
+            font-weight: bold;
+            z-index: 999;
+        }
+
+        .download-btn:active {
+            background: darkgreen;
         }
 
         #preview-section {
             display: none;
             margin-top: 20px;
+        }
+
+        canvas {
+            max-width: 100%;
         }
     </style>
 </head>
@@ -86,10 +114,11 @@
 <input type="file" id="upload">
 <br>
 
-<button onclick="generateImage()">Preview</button>
+<button class="preview-btn" onclick="generateImage()">Preview</button>
 
 <div class="container">
     <img id="template" src="1000213950.png" class="template">
+
     <div class="photo-box">
         <img id="preview">
     </div>
@@ -97,9 +126,10 @@
 
 <div id="preview-section">
     <canvas id="canvas"></canvas>
-    <br>
-    <button onclick="downloadImage()">Download Image</button>
 </div>
+
+<!-- 🔥 FIXED DOWNLOAD BUTTON -->
+<button class="download-btn" onclick="downloadImage()">⬇ Download Image</button>
 
 <script>
 let uploadedImage = null;
@@ -133,9 +163,6 @@ function generateImage() {
         canvas.width = template.width;
         canvas.height = template.height;
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // draw template first
         ctx.drawImage(template, 0, 0);
 
         let img = new Image();
@@ -150,7 +177,6 @@ function generateImage() {
             let x = (template.width / 2) - (realSize / 2);
             let y = template.height * topPercent;
 
-            // cover logic (no stretch)
             let imgRatio = img.width / img.height;
             let boxRatio = 1;
 
