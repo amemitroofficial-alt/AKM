@@ -38,14 +38,14 @@
             width: 100%;
         }
 
-        /* 🔥 PERFECT SIZE */
+        /* 🔥 FINAL PERFECT POSITION */
         .photo-box {
             position: absolute;
-            top: 24%;
+            top: 22%;
             left: 50%;
             transform: translateX(-50%);
-            width: 30%;
-            height: 30%;
+            width: 33%;
+            height: 33%;
             overflow: hidden;
             border-radius: 20px;
         }
@@ -141,8 +141,8 @@ function generateImage() {
 
     img.onload = function () {
 
-        let topPercent = 0.24;
-        let sizePercent = 0.30;
+        let topPercent = 0.22;
+        let sizePercent = 0.33;
 
         let realSize = originalWidth * sizePercent;
         let x = (originalWidth / 2) - (realSize / 2);
