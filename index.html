@@ -17,9 +17,9 @@
 
         .template {
             width: 900px;
+            max-width: 100%;
         }
 
-        /* 🔥 IMAGE BOX (PREVIEW) */
         .photo-box {
             position: absolute;
             top: 160px;
@@ -42,6 +42,18 @@
             padding: 10px 20px;
             font-size: 16px;
         }
+
+        button {
+            background: orange;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: darkorange;
+        }
     </style>
 </head>
 
@@ -57,16 +69,13 @@
 <br><br>
 
 <div class="container">
-    <!-- TEMPLATE -->
-    <img id="template" src="{{ url_for('static', filename='template.png') }}" class="template">
+    <img id="template" src="template.png" class="template">
 
-    <!-- PREVIEW -->
     <div class="photo-box">
         <img id="preview">
     </div>
 </div>
 
-<!-- hidden canvas -->
 <canvas id="canvas" style="display:none;"></canvas>
 
 <script>
@@ -109,26 +118,25 @@ function downloadImage() {
 
     img.onload = function () {
 
-        // 🔥 SCALE FIX
         let scaleX = originalWidth / template.width;
         let scaleY = originalHeight / template.height;
 
-        // CSS values
         let cssTop = 160;
         let cssSize = 260;
 
-        // convert to real pixels
         let realSize = cssSize * scaleX;
         let x = (originalWidth / 2) - (realSize / 2);
         let y = cssTop * scaleY;
 
         ctx.drawImage(img, x, y, realSize, realSize);
 
-        // download
-        let link = document.createElement("a");
-        link.download = "AKM.png";
-        link.href = canvas.toDataURL();
-        link.click();
+        // 🔥 FINAL DOWNLOAD FIX
+        setTimeout(function () {
+            let link = document.createElement("a");
+            link.download = "AKM.png";
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        }, 200);
     };
 }
 </script>
