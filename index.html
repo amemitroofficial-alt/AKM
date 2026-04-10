@@ -11,7 +11,7 @@
         }
 
         .logo {
-            width: 190px;
+            width: 180px;
             margin-top: 20px;
         }
 
@@ -38,14 +38,14 @@
             width: 100%;
         }
 
-        /* 🔥 FINAL PERFECT POSITION */
+        /* 🔥 FINAL PERFECT POSITION (DON'T CHANGE AGAIN) */
         .photo-box {
             position: absolute;
-            top: 22%;
+            top: 26%;
             left: 50%;
             transform: translateX(-50%);
-            width: 33%;
-            height: 33%;
+            width: 30%;
+            height: 30%;
             overflow: hidden;
             border-radius: 20px;
         }
@@ -90,7 +90,6 @@
 
 <div class="container">
     <img id="template" src="1000213950.png" class="template">
-
     <div class="photo-box">
         <img id="preview">
     </div>
@@ -126,48 +125,53 @@ function generateImage() {
     let canvas = document.getElementById("canvas");
     let ctx = canvas.getContext("2d");
 
-    let template = document.getElementById("template");
+    let template = new Image();
+    template.src = "1000213950.png";
 
-    let originalWidth = template.naturalWidth;
-    let originalHeight = template.naturalHeight;
+    template.onload = function () {
 
-    canvas.width = originalWidth;
-    canvas.height = originalHeight;
+        canvas.width = template.width;
+        canvas.height = template.height;
 
-    ctx.drawImage(template, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    let img = new Image();
-    img.src = uploadedImage.src;
+        // draw template first
+        ctx.drawImage(template, 0, 0);
 
-    img.onload = function () {
+        let img = new Image();
+        img.src = uploadedImage.src;
 
-        let topPercent = 0.22;
-        let sizePercent = 0.33;
+        img.onload = function () {
 
-        let realSize = originalWidth * sizePercent;
-        let x = (originalWidth / 2) - (realSize / 2);
-        let y = originalHeight * topPercent;
+            let topPercent = 0.26;
+            let sizePercent = 0.30;
 
-        let imgRatio = img.width / img.height;
-        let boxRatio = 1;
+            let realSize = template.width * sizePercent;
+            let x = (template.width / 2) - (realSize / 2);
+            let y = template.height * topPercent;
 
-        let sx, sy, sWidth, sHeight;
+            // cover logic (no stretch)
+            let imgRatio = img.width / img.height;
+            let boxRatio = 1;
 
-        if (imgRatio > boxRatio) {
-            sHeight = img.height;
-            sWidth = img.height * boxRatio;
-            sx = (img.width - sWidth) / 2;
-            sy = 0;
-        } else {
-            sWidth = img.width;
-            sHeight = img.width / boxRatio;
-            sx = 0;
-            sy = (img.height - sHeight) / 2;
-        }
+            let sx, sy, sWidth, sHeight;
 
-        ctx.drawImage(img, sx, sy, sWidth, sHeight, x, y, realSize, realSize);
+            if (imgRatio > boxRatio) {
+                sHeight = img.height;
+                sWidth = img.height;
+                sx = (img.width - sWidth) / 2;
+                sy = 0;
+            } else {
+                sWidth = img.width;
+                sHeight = img.width;
+                sx = 0;
+                sy = (img.height - sHeight) / 2;
+            }
 
-        document.getElementById("preview-section").style.display = "block";
+            ctx.drawImage(img, sx, sy, sWidth, sHeight, x, y, realSize, realSize);
+
+            document.getElementById("preview-section").style.display = "block";
+        };
     };
 }
 
