@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AKM Image</title>
+    <title>AKM Image Generator</title>
 
     <style>
         body {
             text-align: center;
             font-family: Arial;
             background: #f5f5f5;
+        }
+
+        /* 🔥 BIG LOGO (TEXT SIZE MATCH) */
+        .logo {
+            width: 190px;   /* 🔥 FINAL SIZE */
+            margin-top: 20px;
+        }
+
+        /* 🔥 HEADING */
+        .main-heading {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .sub-text {
+            font-size: 18px;
+            margin: 10px;
+            color: #555;
         }
 
         .container {
@@ -17,19 +36,18 @@
             max-width: 1200px;
         }
 
-        /* TEMPLATE */
         .template {
             width: 100%;
         }
 
-        /* 🔥 RESPONSIVE PHOTO BOX */
+        /* 🔥 BIG PHOTO */
         .photo-box {
             position: absolute;
-            top: 28%;   /* 🔥 responsive */
+            top: 30%;
             left: 50%;
             transform: translateX(-50%);
-            width: 28%;  /* 🔥 responsive */
-            height: 28%;
+            width: 38%;
+            height: 38%;
             overflow: hidden;
             border-radius: 20px;
         }
@@ -41,7 +59,7 @@
         }
 
         input, button {
-            margin: 15px;
+            margin: 10px;
             padding: 10px 20px;
             font-size: 16px;
         }
@@ -57,21 +75,34 @@
         button:hover {
             background: darkorange;
         }
+
+        #preview-section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        canvas {
+            max-width: 100%;
+        }
     </style>
 </head>
 
 <body>
 
-<h2>Upload Your Photo</h2>
+<!-- 🔥 BIG LOGO -->
+<img src="logo.jpeg" class="logo">
+
+<!-- 🔥 NAME -->
+<div class="main-heading">AME KALYAN MITRO GROUP</div>
+
+<div class="sub-text">Upload your photo here</div>
 
 <input type="file" id="upload">
 <br>
 
-<button onclick="downloadImage()">Download Image</button>
+<button onclick="generateImage()">Preview</button>
 
-<br><br>
-
-<div class="container" id="capture">
+<div class="container">
     <img id="template" src="1000213950.png" class="template">
 
     <div class="photo-box">
@@ -79,7 +110,12 @@
     </div>
 </div>
 
-<canvas id="canvas" style="display:none;"></canvas>
+<div id="preview-section">
+    <h3>Preview</h3>
+    <canvas id="canvas"></canvas>
+    <br>
+    <button onclick="downloadImage()">Download Image</button>
+</div>
 
 <script>
 let uploadedImage = null;
@@ -96,7 +132,7 @@ document.getElementById("upload").onchange = function (e) {
     reader.readAsDataURL(e.target.files[0]);
 };
 
-function downloadImage() {
+function generateImage() {
     if (!uploadedImage) {
         alert("Pehle image upload karo!");
         return;
@@ -113,7 +149,6 @@ function downloadImage() {
     canvas.width = originalWidth;
     canvas.height = originalHeight;
 
-    // draw template
     ctx.drawImage(template, 0, 0);
 
     let img = new Image();
@@ -121,15 +156,13 @@ function downloadImage() {
 
     img.onload = function () {
 
-        // 🔥 RESPONSIVE VALUES (MATCH CSS)
-        let topPercent = 0.28;
-        let sizePercent = 0.28;
+        let topPercent = 0.30;
+        let sizePercent = 0.38;
 
         let realSize = originalWidth * sizePercent;
         let x = (originalWidth / 2) - (realSize / 2);
         let y = originalHeight * topPercent;
 
-        // 🔥 NO STRETCH (COVER)
         let imgRatio = img.width / img.height;
         let boxRatio = 1;
 
@@ -153,11 +186,17 @@ function downloadImage() {
             x, y, realSize, realSize
         );
 
-        let link = document.createElement("a");
-        link.download = "AKM.png";
-        link.href = canvas.toDataURL("image/png");
-        link.click();
+        document.getElementById("preview-section").style.display = "block";
     };
+}
+
+function downloadImage() {
+    let canvas = document.getElementById("canvas");
+
+    let link = document.createElement("a");
+    link.download = "AKM.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
 }
 </script>
 
