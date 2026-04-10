@@ -9,87 +9,59 @@
         body {
             margin: 0;
             font-family: Arial;
-            overflow: hidden;
-        }
-
-        /* 🔥 FULL SCREEN BACKGROUND FIX */
-        .zoom-container {
-            width: 100vw;
-            height: 100vh;
-            background: url('1000213950.png') no-repeat center center;
-            background-size: cover;
+            background: black;
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: zoomOut 1.5s ease forwards;
-        }
-
-        @keyframes zoomOut {
-            from { transform: scale(1.3); }
-            to { transform: scale(1); }
-        }
-
-        /* 🔥 CARD FIX (RESPONSIVE) */
-        .card {
-            background: rgba(0,0,0,0.6);
-            padding: 25px;
-            border-radius: 15px;
+            height: 100vh;
             text-align: center;
-            color: white;
-            width: 90%;          /* 🔥 mobile full */
-            max-width: 320px;
+        }
+
+        .container {
+            width: 90%;
         }
 
         .title {
-            font-size: 20px;
+            font-size: 26px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+            line-height: 1.4;
         }
 
-        /* 🔥 BIG BUTTON (FIXED) */
+        /* 🔥 BIG BUTTON */
         .start-btn {
-            width: 140px;
-            height: 140px;
-            border-radius: 20px;
-            border: none;
-            cursor: pointer;
-            background: url('logo.jpeg') center/cover no-repeat;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 20px;
+            width: 100%;
+            max-width: 300px;
+            padding: 20px;
+            font-size: 22px;
             font-weight: bold;
-            margin: auto;
-        }
-
-        .start-btn span {
-            background: rgba(0,0,0,0.6);
-            padding: 6px 12px;
-            border-radius: 6px;
+            background: orange;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
         }
 
         .start-btn:active {
             transform: scale(0.95);
+            background: darkorange;
         }
-
     </style>
 </head>
 
 <body>
 
-<div class="zoom-container">
-    <div class="card">
+<div class="container">
 
-        <div class="title">
-            AME KALYAN MITRO GROUP
-        </div>
-
-        <button class="start-btn" onclick="startApp()">
-            <span>START</span>
-        </button>
-
+    <div class="title">
+        AME KALYAN<br>MITRO GROUP
     </div>
+
+    <button class="start-btn" onclick="startApp()">
+        START
+    </button>
+
 </div>
 
 <script>
