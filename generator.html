@@ -3,6 +3,8 @@
 <head>
     <title>AKM Image Generator</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         body {
             margin: 0;
@@ -11,7 +13,7 @@
             text-align: center;
         }
 
-        /* 🔥 INTRO SCREEN */
+        /* 🔥 INTRO */
         #intro {
             position: fixed;
             width: 100%;
@@ -21,44 +23,30 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            overflow: hidden;
         }
 
-        /* 🔥 STRONG ZOOM CONTENT */
         .intro-content {
             text-align: center;
-            padding: 20px;
-            animation: smoothZoom 3s ease forwards;
+            animation: superZoom 3.5s ease forwards;
         }
 
         .title {
-            font-size: 44px;
+            font-size: 48px;
             font-weight: bold;
         }
 
         .tagline {
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 20px;
             color: #444;
         }
 
-        /* 🔥 IMPROVED ZOOM */
-        @keyframes smoothZoom {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            60% {
-                transform: scale(1.1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1.15);
-                opacity: 1;
-            }
+        @keyframes superZoom {
+            0% { transform: scale(0.3); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1.35); opacity: 1; }
         }
 
-        /* 🔥 BUTTON STYLE */
         button {
             margin-top: 30px;
             font-size: 18px;
@@ -70,23 +58,11 @@
             background: orange;
             color: white;
             box-shadow: 0 4px 0 #c97a00;
-            transition: 0.2s;
         }
 
-        button:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 #c97a00;
-        }
-
-        /* 🔥 MAIN APP */
+        /* 🔥 MAIN */
         #main {
             display: none;
-            animation: fadeIn 0.8s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         .logo {
@@ -101,6 +77,22 @@
 
         .sub-text {
             color: #555;
+        }
+
+        /* 🔥 UPLOAD BOX */
+        .upload-box {
+            border: 2px dashed #aaa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 400px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .upload-box:hover {
+            border-color: orange;
         }
 
         .container {
@@ -153,11 +145,9 @@
 <div id="intro">
     <div class="intro-content">
         <div class="title">Ame Kalyan Mitro Team</div>
-
         <div class="tagline">
             🙏Nayi soch, purane sanskar, dharam, seva aur ekta ka sangam🙏
         </div>
-
         <button onclick="startApp()">Start</button>
     </div>
 </div>
@@ -169,8 +159,12 @@
     <div class="main-heading">AME KALYAN MITRO GROUP</div>
     <div class="sub-text">Upload your photo here</div>
 
-    <input type="file" id="upload">
-    <br>
+    <!-- 🔥 UPLOAD BOX -->
+    <div class="upload-box" onclick="document.getElementById('upload').click()">
+        Click here to upload photo
+    </div>
+
+    <input type="file" id="upload" style="display:none">
 
     <div class="container">
         <img src="1000213951.png.png" class="template">
