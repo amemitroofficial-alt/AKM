@@ -232,7 +232,25 @@ function generateImage() {
             let x = (template.width / 2) - (realSize / 2);
             let y = template.height * 0.26;
 
-            ctx.drawImage(img, 0, 0, img.width, img.height, x, y, realSize, realSize);
+            // 🔥 FIXED IMAGE FIT (NO DISTORTION)
+            let imgRatio = img.width / img.height;
+            let boxRatio = 1;
+
+            let sx, sy, sWidth, sHeight;
+
+            if (imgRatio > boxRatio) {
+                sHeight = img.height;
+                sWidth = img.height;
+                sx = (img.width - sWidth) / 2;
+                sy = 0;
+            } else {
+                sWidth = img.width;
+                sHeight = img.width;
+                sx = 0;
+                sy = (img.height - sHeight) / 2;
+            }
+
+            ctx.drawImage(img, sx, sy, sWidth, sHeight, x, y, realSize, realSize);
 
             document.getElementById("preview-section").style.display = "block";
             document.getElementById("downloadBtn").style.display = "inline-block";
