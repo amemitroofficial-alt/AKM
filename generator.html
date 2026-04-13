@@ -5,29 +5,81 @@
 
     <style>
         body {
-            text-align: center;
+            margin: 0;
             font-family: Arial;
             background: #f5f5f5;
-            margin-bottom: 100px;
+            text-align: center;
+        }
+
+        /* 🔥 INTRO SCREEN */
+        #intro {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        /* 🔥 GROUP ZOOM */
+        .intro-content {
+            text-align: center;
+            animation: smoothZoom 2.5s ease forwards;
+        }
+
+        .title {
+            font-size: 44px;
+            font-weight: bold;
+        }
+
+        .tagline {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #444;
+        }
+
+        @keyframes smoothZoom {
+            0% {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* 🔥 BUTTON STYLE */
+        button {
+            margin-top: 30px;
+            font-size: 18px;
+            padding: 14px 28px;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            background: orange;
+            color: white;
+            box-shadow: 0 4px 0 #c97a00;
+            transition: 0.2s;
+        }
+
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #c97a00;
+        }
+
+        /* 🔥 MAIN APP */
+        #main {
+            display: none;
             animation: fadeIn 0.8s ease;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-        }
-
-        /* 🔙 BACK BUTTON */
-        .back-btn {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            background: black;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-            z-index: 999;
         }
 
         .logo {
@@ -38,12 +90,9 @@
         .main-heading {
             font-size: 28px;
             font-weight: bold;
-            margin-top: 10px;
         }
 
         .sub-text {
-            font-size: 16px;
-            margin: 10px;
             color: #555;
         }
 
@@ -58,7 +107,6 @@
             width: 100%;
         }
 
-        /* 🔥 PERFECT PHOTO POSITION */
         .photo-box {
             position: absolute;
             top: 26%;
@@ -76,43 +124,6 @@
             object-fit: cover;
         }
 
-        input {
-            margin: 10px;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        button {
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .preview-btn {
-            background: orange;
-            color: white;
-        }
-
-        /* 🔥 FIXED DOWNLOAD BUTTON */
-        .download-btn {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: green;
-            color: white;
-            font-size: 18px;
-            padding: 15px;
-            font-weight: bold;
-            z-index: 999;
-        }
-
-        .download-btn:active {
-            background: darkgreen;
-        }
-
         #preview-section {
             display: none;
             margin-top: 20px;
@@ -121,40 +132,63 @@
         canvas {
             max-width: 100%;
         }
+
+        #downloadBtn {
+            display: none;
+            margin-top: 15px;
+        }
     </style>
 </head>
 
 <body>
 
-<!-- 🔙 BACK -->
-<button class="back-btn" onclick="goBack()">⬅ Back</button>
+<!-- 🔥 INTRO -->
+<div id="intro">
+    <div class="intro-content">
+        <div class="title">Ame Kalyan Mitro Team</div>
 
-<!-- 🔥 LOGO + NAME -->
-<img src="AKMLOGO2.png" class="logo">
-<div class="main-heading">AME KALYAN MITRO GROUP</div>
-<div class="sub-text">Upload your photo here</div>
+        <div class="tagline">
+            🙏Nayi soch, purane sanskar, dharam, seva aur ekta ka sangam🙏
+        </div>
 
-<input type="file" id="upload">
-<br>
-
-<button class="preview-btn" onclick="generateImage()">Preview</button>
-
-<div class="container">
-    <img id="template" src="1000213951.png.png" class="template">
-
-    <div class="photo-box">
-        <img id="preview">
+        <button onclick="startApp()">Start</button>
     </div>
 </div>
 
-<div id="preview-section">
-    <canvas id="canvas"></canvas>
+<!-- 🔥 MAIN -->
+<div id="main">
+
+    <img src="AKMLOGO2.png" class="logo">
+    <div class="main-heading">AME KALYAN MITRO GROUP</div>
+    <div class="sub-text">Upload your photo here</div>
+
+    <input type="file" id="upload">
+    <br>
+
+    <div class="container">
+        <img src="1000213951.png.png" class="template">
+
+        <div class="photo-box">
+            <img id="preview">
+        </div>
+    </div>
+
+    <button onclick="generateImage()">Preview</button>
+
+    <div id="preview-section">
+        <canvas id="canvas"></canvas>
+        <br>
+        <button id="downloadBtn" onclick="downloadImage()">Download</button>
+    </div>
+
 </div>
 
-<!-- 🔥 FIXED DOWNLOAD BUTTON -->
-<button class="download-btn" onclick="downloadImage()">⬇ Download Image</button>
-
 <script>
+function startApp() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("main").style.display = "block";
+}
+
 let uploadedImage = null;
 
 document.getElementById("upload").onchange = function (e) {
@@ -193,33 +227,14 @@ function generateImage() {
 
         img.onload = function () {
 
-            let topPercent = 0.26;
-            let sizePercent = 0.30;
-
-            let realSize = template.width * sizePercent;
+            let realSize = template.width * 0.30;
             let x = (template.width / 2) - (realSize / 2);
-            let y = template.height * topPercent;
+            let y = template.height * 0.26;
 
-            let imgRatio = img.width / img.height;
-            let boxRatio = 1;
-
-            let sx, sy, sWidth, sHeight;
-
-            if (imgRatio > boxRatio) {
-                sHeight = img.height;
-                sWidth = img.height;
-                sx = (img.width - sWidth) / 2;
-                sy = 0;
-            } else {
-                sWidth = img.width;
-                sHeight = img.width;
-                sx = 0;
-                sy = (img.height - sHeight) / 2;
-            }
-
-            ctx.drawImage(img, sx, sy, sWidth, sHeight, x, y, realSize, realSize);
+            ctx.drawImage(img, 0, 0, img.width, img.height, x, y, realSize, realSize);
 
             document.getElementById("preview-section").style.display = "block";
+            document.getElementById("downloadBtn").style.display = "inline-block";
         };
     };
 }
@@ -231,10 +246,6 @@ function downloadImage() {
     link.download = "AKM.png";
     link.href = canvas.toDataURL("image/png");
     link.click();
-}
-
-function goBack() {
-    window.location.href = "index.html";
 }
 </script>
 
