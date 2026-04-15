@@ -49,10 +49,11 @@
             color: #444;
         }
 
+        /* ✅ FIXED ZOOM */
         @keyframes superZoom {
             0% { transform: scale(0.3); opacity: 0; }
-            60% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(1.35); opacity: 1; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         button {
@@ -66,6 +67,22 @@
             background: orange;
             color: white;
             box-shadow: 0 4px 0 #c97a00;
+        }
+
+        /* ✅ MOBILE FIX */
+        @media (max-width: 600px) {
+            .title {
+                font-size: 28px;
+            }
+
+            .tagline {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
         }
 
         #main {
@@ -257,7 +274,6 @@ function generateImage() {
             document.getElementById("preview-section").style.display = "block";
             document.getElementById("downloadBtn").style.display = "inline-block";
 
-            // 🔥 IMAGE COUNT TRACKING
             gtag('event', 'image_generated');
         };
     };
