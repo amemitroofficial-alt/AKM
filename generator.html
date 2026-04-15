@@ -5,6 +5,15 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- 🔥 GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BSMGX236C6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BSMGX236C6');
+    </script>
+
     <style>
         body {
             margin: 0;
@@ -13,7 +22,6 @@
             text-align: center;
         }
 
-        /* 🔥 INTRO */
         #intro {
             position: fixed;
             width: 100%;
@@ -60,7 +68,6 @@
             box-shadow: 0 4px 0 #c97a00;
         }
 
-        /* 🔥 MAIN */
         #main {
             display: none;
         }
@@ -79,7 +86,6 @@
             color: #555;
         }
 
-        /* 🔥 UPLOAD BOX */
         .upload-box {
             border: 2px dashed #aaa;
             border-radius: 15px;
@@ -141,7 +147,6 @@
 
 <body>
 
-<!-- 🔥 INTRO -->
 <div id="intro">
     <div class="intro-content">
         <div class="title">Ame Kalyan Mitro Team</div>
@@ -152,14 +157,12 @@
     </div>
 </div>
 
-<!-- 🔥 MAIN -->
 <div id="main">
 
     <img src="AKMLOGO2.png" class="logo">
     <div class="main-heading">AME KALYAN MITRO GROUP</div>
     <div class="sub-text">Upload your photo here</div>
 
-    <!-- 🔥 UPLOAD BOX -->
     <div class="upload-box" onclick="document.getElementById('upload').click()">
         Click here to upload photo
     </div>
@@ -232,7 +235,6 @@ function generateImage() {
             let x = (template.width / 2) - (realSize / 2);
             let y = template.height * 0.26;
 
-            // 🔥 FIXED IMAGE FIT (NO DISTORTION)
             let imgRatio = img.width / img.height;
             let boxRatio = 1;
 
@@ -254,6 +256,9 @@ function generateImage() {
 
             document.getElementById("preview-section").style.display = "block";
             document.getElementById("downloadBtn").style.display = "inline-block";
+
+            // 🔥 IMAGE COUNT TRACKING
+            gtag('event', 'image_generated');
         };
     };
 }
