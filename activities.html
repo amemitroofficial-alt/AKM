@@ -24,7 +24,6 @@
             margin-bottom: 20px;
         }
 
-        /* GRID */
         .gallery {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -80,6 +79,12 @@
         .btn:active {
             transform: scale(0.95);
         }
+
+        /* APP BOX */
+        #appBox {
+            display: none;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -87,12 +92,10 @@
 
 <div class="container">
 
-    <!-- TITLE -->
     <div class="title">
         OUR JIVDAYA ACTIVITY 🐄
     </div>
 
-    <!-- 6 BOX GRID -->
     <div class="gallery">
         <div class="placeholder">Uploading Soon 📸</div>
         <div class="placeholder">Uploading Soon 📸</div>
@@ -103,10 +106,8 @@
         <div class="placeholder">Uploading Soon 📸</div>
     </div>
 
-    <!-- LINE -->
     <div class="divider"></div>
 
-    <!-- TEXT -->
     <div class="text">
         દરરોજ ઘણા બેઝુબાન પ્રાણીઓ ભૂખ્યા અને લાચાર રહી જાય છે... 🐄
         <br><br>
@@ -117,12 +118,35 @@
         માત્ર ₹10 પણ મોટો ફેરફાર લાવી શકે છે 🙏
     </div>
 
-    <!-- DONATE -->
-    <a href="upi://pay?pa=9998143506@ybl&pn=AKM&tn=તમારું એક નાનું દાન, એક ભૂખ્યા જીવને આશા આપી શકે છે ❤️">
-        <button class="btn">DONATE NOW ❤️</button>
-    </a>
+    <!-- DONATE BUTTON -->
+    <button class="btn" onclick="showApps()">DONATE NOW ❤️</button>
+
+    <!-- APP SELECTION -->
+    <div id="appBox">
+        <p>Choose Payment App 👇</p>
+
+        <button class="btn" onclick="pay()">Google Pay</button><br>
+        <button class="btn" onclick="pay()">PhonePe</button><br>
+        <button class="btn" onclick="pay()">Paytm</button>
+    </div>
 
 </div>
+
+<script>
+function showApps() {
+    document.getElementById("appBox").style.display = "block";
+}
+
+function pay() {
+    let upi = "upi://pay?pa=9998143506@ybl&pn=AKM&tn=Jivdaya Donation";
+
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        window.location.href = upi;
+    } else {
+        window.open("https://wa.me/919998143506?text=I want to donate for Jivdaya 🙏", "_blank");
+    }
+}
+</script>
 
 </body>
 </html>
