@@ -1,291 +1,125 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AKM Image Generator</title>
+    <title>AKM - Welcome</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- 🔥 GOOGLE ANALYTICS -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BSMGX236C6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BSMGX236C6');
-    </script>
 
     <style>
         body {
             margin: 0;
             font-family: Arial;
-            background: #f5f5f5;
-            text-align: center;
-        }
-
-        #intro {
-            position: fixed;
-            width: 100%;
-            height: 100vh;
-            background: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .intro-content {
-            text-align: center;
-            animation: superZoom 3.5s ease forwards;
-        }
-
-        .title {
-            font-size: 48px;
-            font-weight: bold;
-        }
-
-        .tagline {
-            margin-top: 20px;
-            font-size: 20px;
-            color: #444;
-        }
-
-        /* ✅ FIXED ZOOM */
-        @keyframes superZoom {
-            0% { transform: scale(0.3); opacity: 0; }
-            60% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        button {
-            margin-top: 30px;
-            font-size: 18px;
-            padding: 14px 28px;
-            border-radius: 14px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            background: orange;
+            background: black;
             color: white;
-            box-shadow: 0 4px 0 #c97a00;
-        }
-
-        /* ✅ MOBILE FIX */
-        @media (max-width: 600px) {
-            .title {
-                font-size: 28px;
-            }
-
-            .tagline {
-                font-size: 14px;
-            }
-
-            button {
-                font-size: 14px;
-                padding: 10px 20px;
-            }
-        }
-
-        #main {
-            display: none;
-        }
-
-        .logo {
-            width: 180px;
-            margin-top: 20px;
-        }
-
-        .main-heading {
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .sub-text {
-            color: #555;
-        }
-
-        .upload-box {
-            border: 2px dashed #aaa;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 20px auto;
-            width: 80%;
-            max-width: 400px;
-            background: white;
-            cursor: pointer;
-        }
-
-        .upload-box:hover {
-            border-color: orange;
+            text-align: center;
         }
 
         .container {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            max-width: 1200px;
+            padding-top: 60px;
+            animation: zoom 1.5s ease;
         }
 
-        .template {
-            width: 100%;
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1.5;
         }
 
-        .photo-box {
-            position: absolute;
-            top: 26%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30%;
-            height: 30%;
-            overflow: hidden;
-            border-radius: 20px;
+        .tagline {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #ccc;
         }
 
-        .photo-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .divider {
+            margin: 40px auto;
+            width: 85%;
+            height: 1px;
+            background: #555;
         }
 
-        #preview-section {
-            display: none;
+        .sub-heading {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .btn {
             margin-top: 20px;
+            padding: 16px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            background: orange;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #c97a00;
         }
 
-        canvas {
-            max-width: 100%;
+        .btn:active {
+            transform: scale(0.95);
         }
 
-        #downloadBtn {
-            display: none;
-            margin-top: 15px;
+        @keyframes zoom {
+            0% { transform: scale(0.5); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
 
 <body>
 
-<div id="intro">
-    <div class="intro-content">
-        <div class="title">Ame Kalyan Mitro Team</div>
-        <div class="tagline">
-            🙏Nayi soch, purane sanskar, dharam, seva aur ekta ka sangam🙏
-        </div>
-        <button onclick="startApp()">Start</button>
-    </div>
-</div>
+<div class="container">
 
-<div id="main">
-
-    <img src="AKMLOGO2.png" class="logo">
-    <div class="main-heading">AME KALYAN MITRO GROUP</div>
-    <div class="sub-text">Upload your photo here</div>
-
-    <div class="upload-box" onclick="document.getElementById('upload').click()">
-        Click here to upload photo
+    <!-- TOP -->
+    <div class="title">
+        WELCOME TO <br>
+        AME KALYAN MITRO GROUP
     </div>
 
-    <input type="file" id="upload" style="display:none">
-
-    <div class="container">
-        <img src="1000213951.png.png" class="template">
-
-        <div class="photo-box">
-            <img id="preview">
-        </div>
+    <div class="tagline">
+        🙏 Nayi soch, purane sanskar, dharam, seva aur ekta ka sangam 🙏
     </div>
 
-    <button onclick="generateImage()">Preview</button>
+    <!-- LINE -->
+    <div class="divider"></div>
 
-    <div id="preview-section">
-        <canvas id="canvas"></canvas>
-        <br>
-        <button id="downloadBtn" onclick="downloadImage()">Download</button>
+    <!-- IMAGE SECTION -->
+    <div class="sub-heading">
+        MAKE YOUR AKM IDENTITY ✨
     </div>
+
+    <button class="btn" onclick="goToGenerator()">
+        MAKE MY IMAGE ✨
+    </button>
+
+    <!-- LINE -->
+    <div class="divider"></div>
+
+    <!-- JIVDAYA SECTION -->
+    <div class="section-title">
+        OUR JIVDAYA ACTIVITY 🐄
+    </div>
+
+    <button class="btn" onclick="goToActivities()">
+        SHOW ACTIVITIES
+    </button>
 
 </div>
 
 <script>
-function startApp() {
-    document.getElementById("intro").style.display = "none";
-    document.getElementById("main").style.display = "block";
+function goToGenerator() {
+    window.location.href = "AKM Image Generator.html";
 }
 
-let uploadedImage = null;
-
-document.getElementById("upload").onchange = function (e) {
-    let reader = new FileReader();
-
-    reader.onload = function () {
-        uploadedImage = new Image();
-        uploadedImage.src = reader.result;
-        document.getElementById("preview").src = reader.result;
-    };
-
-    reader.readAsDataURL(e.target.files[0]);
-};
-
-function generateImage() {
-    if (!uploadedImage) {
-        alert("Upload image first!");
-        return;
-    }
-
-    let canvas = document.getElementById("canvas");
-    let ctx = canvas.getContext("2d");
-
-    let template = new Image();
-    template.src = "1000213951.png.png";
-
-    template.onload = function () {
-
-        canvas.width = template.width;
-        canvas.height = template.height;
-
-        ctx.drawImage(template, 0, 0);
-
-        let img = new Image();
-        img.src = uploadedImage.src;
-
-        img.onload = function () {
-
-            let realSize = template.width * 0.30;
-            let x = (template.width / 2) - (realSize / 2);
-            let y = template.height * 0.26;
-
-            let imgRatio = img.width / img.height;
-            let boxRatio = 1;
-
-            let sx, sy, sWidth, sHeight;
-
-            if (imgRatio > boxRatio) {
-                sHeight = img.height;
-                sWidth = img.height;
-                sx = (img.width - sWidth) / 2;
-                sy = 0;
-            } else {
-                sWidth = img.width;
-                sHeight = img.width;
-                sx = 0;
-                sy = (img.height - sHeight) / 2;
-            }
-
-            ctx.drawImage(img, sx, sy, sWidth, sHeight, x, y, realSize, realSize);
-
-            document.getElementById("preview-section").style.display = "block";
-            document.getElementById("downloadBtn").style.display = "inline-block";
-
-            gtag('event', 'image_generated');
-        };
-    };
-}
-
-function downloadImage() {
-    let canvas = document.getElementById("canvas");
-
-    let link = document.createElement("a");
-    link.download = "AKM.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
+function goToActivities() {
+    window.location.href = "activities.html";
 }
 </script>
 
