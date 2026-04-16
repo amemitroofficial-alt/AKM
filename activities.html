@@ -15,28 +15,62 @@
         }
 
         .container {
-            padding-top: 80px;
-            animation: zoom 1.5s ease;
+            padding: 20px 10px;
         }
 
         .title {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
         }
 
-        .coming {
-            font-size: 22px;
-            margin-top: 30px;
+        /* GRID */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .placeholder {
+            width: 100%;
+            aspect-ratio: 9/16;
+            background: #222;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #aaa;
+            font-size: 12px;
+            border: 2px dashed #555;
+        }
+
+        .divider {
+            margin: 25px auto;
+            width: 90%;
+            height: 1px;
+            background: #555;
+        }
+
+        .text {
+            font-size: 15px;
+            color: #ddd;
+            line-height: 1.6;
+            padding: 0 10px;
+        }
+
+        .highlight {
             color: orange;
+            font-weight: bold;
+            margin-top: 10px;
         }
 
         .btn {
-            margin-top: 40px;
+            margin-top: 20px;
             padding: 14px 25px;
             font-size: 16px;
             font-weight: bold;
-            background: orange;
+            background: green;
             border: none;
             border-radius: 10px;
             color: white;
@@ -46,12 +80,6 @@
         .btn:active {
             transform: scale(0.95);
         }
-
-        @keyframes zoom {
-            0% { transform: scale(0.5); opacity: 0; }
-            60% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); }
-        }
     </style>
 </head>
 
@@ -59,25 +87,42 @@
 
 <div class="container">
 
+    <!-- TITLE -->
     <div class="title">
         OUR JIVDAYA ACTIVITY 🐄
     </div>
 
-    <div class="coming">
-        🚧 COMING SOON 🚧
+    <!-- 6 BOX GRID -->
+    <div class="gallery">
+        <div class="placeholder">Uploading Soon 📸</div>
+        <div class="placeholder">Uploading Soon 📸</div>
+        <div class="placeholder">Uploading Soon 📸</div>
+
+        <div class="placeholder">Uploading Soon 📸</div>
+        <div class="placeholder">Uploading Soon 📸</div>
+        <div class="placeholder">Uploading Soon 📸</div>
     </div>
 
-    <button class="btn" onclick="goBack()">
-        ⬅ BACK
-    </button>
+    <!-- LINE -->
+    <div class="divider"></div>
+
+    <!-- TEXT -->
+    <div class="text">
+        દરરોજ ઘણા બેઝુબાન પ્રાણીઓ ભૂખ્યા અને લાચાર રહી જાય છે... 🐄
+        <br><br>
+        તમારું નાનું સહયોગ તેમને ખોરાક, સંભાળ અને વધુ સારી જિંદગી આપી શકે છે ❤️
+    </div>
+
+    <div class="highlight">
+        માત્ર ₹10 પણ મોટો ફેરફાર લાવી શકે છે 🙏
+    </div>
+
+    <!-- DONATE -->
+    <a href="upi://pay?pa=9998143506@ybl&pn=AKM&tn=Jivdaya Donation">
+        <button class="btn">DONATE NOW ❤️</button>
+    </a>
 
 </div>
-
-<script>
-function goBack() {
-    window.location.href = "generator.html";
-}
-</script>
 
 </body>
 </html>
