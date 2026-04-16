@@ -5,15 +5,6 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- GOOGLE ANALYTICS -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BSMGX236C6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BSMGX236C6');
-    </script>
-
     <style>
         body {
             margin: 0;
@@ -110,40 +101,36 @@
 
 <body>
 
-<div id="main" style="display:block;">
+<img src="AKMLOGO2.png" class="logo">
 
-    <img src="AKMLOGO2.png" class="logo">
+<div class="main-heading">
+    AME KALYAN MITRO GROUP
+</div>
 
-    <div class="main-heading">
-        AME KALYAN MITRO GROUP
+<div class="sub-text">
+    Upload your photo here
+</div>
+
+<div class="upload-box" onclick="document.getElementById('upload').click()">
+    Click here to upload photo
+</div>
+
+<input type="file" id="upload" style="display:none">
+
+<div class="container">
+    <img src="1000213951.png.png" class="template">
+
+    <div class="photo-box">
+        <img id="preview">
     </div>
+</div>
 
-    <div class="sub-text">
-        Upload your photo here
-    </div>
+<button onclick="generateImage()">Preview</button>
 
-    <div class="upload-box" onclick="document.getElementById('upload').click()">
-        Click here to upload photo
-    </div>
-
-    <input type="file" id="upload" style="display:none">
-
-    <div class="container">
-        <img src="1000213951.png.png" class="template">
-
-        <div class="photo-box">
-            <img id="preview">
-        </div>
-    </div>
-
-    <button onclick="generateImage()">Preview</button>
-
-    <div id="preview-section">
-        <canvas id="canvas"></canvas>
-        <br>
-        <button id="downloadBtn" onclick="downloadImage()">Download</button>
-    </div>
-
+<div id="preview-section">
+    <canvas id="canvas"></canvas>
+    <br>
+    <button id="downloadBtn" onclick="downloadImage()">Download</button>
 </div>
 
 <script>
@@ -189,7 +176,23 @@ function generateImage() {
             let x = (template.width / 2) - (size / 2);
             let y = template.height * 0.26;
 
-            ctx.drawImage(img, x, y, size, size);
+            let imgRatio = img.width / img.height;
+
+            let sx, sy, sWidth, sHeight;
+
+            if (imgRatio > 1) {
+                sHeight = img.height;
+                sWidth = img.height;
+                sx = (img.width - sWidth) / 2;
+                sy = 0;
+            } else {
+                sWidth = img.width;
+                sHeight = img.width;
+                sx = 0;
+                sy = (img.height - sHeight) / 2;
+            }
+
+            ctx.drawImage(img, sx, sy, sWidth, sHeight, x, y, size, size);
 
             document.getElementById("preview-section").style.display = "block";
             document.getElementById("downloadBtn").style.display = "inline-block";
