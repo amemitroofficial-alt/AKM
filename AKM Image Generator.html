@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AKM Image Generator</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BSMGX236C6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BSMGX236C6');
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f5f5f5;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 20px;
+            font-size: 18px;
+            padding: 14px 28px;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            background: orange;
+            color: white;
+            box-shadow: 0 4px 0 #c97a00;
+        }
+
+        .logo {
+            width: 180px;
+            margin-top: 20px;
+        }
+
+        .main-heading {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .sub-text {
+            color: #555;
+        }
+
+        .upload-box {
+            border: 2px dashed #aaa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 400px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .upload-box:hover {
+            border-color: orange;
+        }
+
+        .container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .template {
+            width: 100%;
+        }
+
+        .photo-box {
+            position: absolute;
+            top: 26%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30%;
+            height: 30%;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #preview-section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        canvas {
+            max-width: 100%;
+        }
+
+        #downloadBtn {
+            display: none;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="main" style="display:block;">
+
+    <img src="AKMLOGO2.png" class="logo">
+
+    <div class="main-heading">
+        AME KALYAN MITRO GROUP
+    </div>
+
+    <div class="sub-text">
+        Upload your photo here
+    </div>
+
+    <div class="upload-box" onclick="document.getElementById('upload').click()">
+        Click here to upload photo
+    </div>
+
+    <input type="file" id="upload" style="display:none">
+
+    <div class="container">
+        <img src="1000213951.png.png" class="template">
+
+        <div class="photo-box">
+            <img id="preview">
+        </div>
+    </div>
+
+    <button onclick="generateImage()">Preview</button>
+
+    <div id="preview-section">
+        <canvas id="canvas"></canvas>
+        <br>
+        <button id="downloadBtn" onclick="downloadImage()">Download</button>
+    </div>
+
+</div>
+
+<script>
+let uploadedImage = null;
+
+document.getElementById("upload").onchange = function (e) {
+    let reader = new FileReader();
+
+    reader.onload = function () {
+        uploadedImage = new Image();
+        uploadedImage.src = reader.result;
+        document.getElementById("preview").src = reader.result;
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
+};
+
+function generateImage() {
+    if (!uploadedImage) {
+        alert("Upload image first!");
+        return;
+    }
+
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
+
+    let template = new Image();
+    template.src = "1000213951.png.png";
+
+    template.onload = function () {
+
+        canvas.width = template.width;
+        canvas.height = template.height;
+
+        ctx.drawImage(template, 0, 0);
+
+        let img = new Image();
+        img.src = uploadedImage.src;
+
+        img.onload = function () {
+
+            let size = template.width * 0.30;
+            let x = (template.width / 2) - (size / 2);
+            let y = template.height * 0.26;
+
+            ctx.drawImage(img, x, y, size, size);
+
+            document.getElementById("preview-section").style.display = "block";
+            document.getElementById("downloadBtn").style.display = "inline-block";
+        };
+    };
+}
+
+function downloadImage() {
+    let canvas = document.getElementById("canvas");
+
+    let link = document.createElement("a");
+    link.download = "AKM.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+}
+</script>
+
+</body>
+</html>
