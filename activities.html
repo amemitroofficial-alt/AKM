@@ -80,7 +80,6 @@
             transform: scale(0.95);
         }
 
-        /* APP BOX */
         #appBox {
             display: none;
             margin-top: 20px;
@@ -125,9 +124,9 @@
     <div id="appBox">
         <p>Choose Payment App 👇</p>
 
-        <button class="btn" onclick="pay()">Google Pay</button><br>
-        <button class="btn" onclick="pay()">PhonePe</button><br>
-        <button class="btn" onclick="pay()">Paytm</button>
+        <button class="btn" onclick="pay('gpay')">Google Pay</button><br>
+        <button class="btn" onclick="pay('phonepe')">PhonePe</button><br>
+        <button class="btn" onclick="pay('paytm')">Paytm</button>
     </div>
 
 </div>
@@ -137,11 +136,23 @@ function showApps() {
     document.getElementById("appBox").style.display = "block";
 }
 
-function pay() {
+function pay(app) {
     let upi = "upi://pay?pa=9998143506@ybl&pn=AKM&tn=Jivdaya Donation";
 
-    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        window.location.href = upi;
+    if (/Android/i.test(navigator.userAgent)) {
+
+        if (app === "gpay") {
+            window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=Jivdaya Donation#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end;";
+        }
+
+        else if (app === "phonepe") {
+            window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=Jivdaya Donation#Intent;scheme=upi;package=com.phonepe.app;end;";
+        }
+
+        else if (app === "paytm") {
+            window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=Jivdaya Donation#Intent;scheme=upi;package=net.one97.paytm;end;";
+        }
+
     } else {
         window.open("https://wa.me/919998143506?text=I want to donate for Jivdaya 🙏", "_blank");
     }
