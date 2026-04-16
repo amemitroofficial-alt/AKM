@@ -137,20 +137,20 @@ function showApps() {
 }
 
 function pay(app) {
-    let upi = "upi://pay?pa=9998143506@ybl&pn=AKM&tn=Jivdaya Donation";
+    let note = encodeURIComponent("તમારું એક નાનું દાન, એક ભૂખ્યા જીવને આશા આપી શકે છે ❤️");
 
     if (/Android/i.test(navigator.userAgent)) {
 
         if (app === "gpay") {
-            window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=Jivdaya Donation#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end;";
+            window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=" + note + "#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end;";
         }
 
         else if (app === "phonepe") {
-            window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=Jivdaya Donation#Intent;scheme=upi;package=com.phonepe.app;end;";
+            window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=" + note + "#Intent;scheme=upi;package=com.phonepe.app;end;";
         }
 
         else if (app === "paytm") {
-            window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=Jivdaya Donation#Intent;scheme=upi;package=net.one97.paytm;end;";
+            window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=" + note + "#Intent;scheme=upi;package=net.one97.paytm;end;";
         }
 
     } else {
