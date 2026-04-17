@@ -4,7 +4,6 @@
     <title>Spin the Seva Wheel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
@@ -17,15 +16,16 @@
         }
 
         .container {
-            padding-top: 50px;
+            padding-top: 40px;
         }
 
+        /* ✅ CORRECT ARROW (downward toward wheel) */
         .arrow {
             width: 0;
             height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-bottom: 25px solid red;
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-top: 30px solid red; /* FIXED */
             margin: auto;
         }
 
@@ -34,20 +34,20 @@
         }
 
         .btn {
-            margin-top: 15px;
-            padding: 14px 28px;
-            font-size: 16px;
+            margin-top: 12px;
+            padding: 12px 26px;
+            font-size: 15px;
             font-weight: bold;
             background: orange;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             color: white;
             cursor: pointer;
         }
 
         .result {
-            margin-top: 25px;
-            font-size: 22px;
+            margin-top: 20px;
+            font-size: 20px;
             font-weight: bold;
             color: #00ffcc;
         }
@@ -96,12 +96,37 @@ let spinTimeTotal = 0;
 
 const ctx = document.getElementById("wheel").getContext("2d");
 
+/* ✅ MULTILINE TEXT FUNCTION */
+function drawText(text, x, y, maxWidth, lineHeight) {
+    let words = text.split(" ");
+    let line = "";
+    let lines = [];
+
+    for (let n = 0; n < words.length; n++) {
+        let testLine = line + words[n] + " ";
+        let testWidth = ctx.measureText(testLine).width;
+
+        if (testWidth > maxWidth && n > 0) {
+            lines.push(line);
+            line = words[n] + " ";
+        } else {
+            line = testLine;
+        }
+    }
+    lines.push(line);
+
+    for (let i = 0; i < lines.length; i++) {
+        ctx.fillText(lines[i].trim(), x, y + (i * lineHeight));
+    }
+}
+
 function drawWheel() {
     const arc = Math.PI / (options.length / 2);
     ctx.clearRect(0,0,300,300);
 
     for (let i = 0; i < options.length; i++) {
         const angle = startAngle + i * arc;
+
         ctx.fillStyle = colors[i];
 
         ctx.beginPath();
@@ -114,8 +139,11 @@ function drawWheel() {
         ctx.translate(150, 150);
         ctx.rotate(angle + arc / 2);
 
-        ctx.font = "bold 14px Arial";
-        ctx.fillText(options[i], 40, 5);
+        ctx.font = "bold 12px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+
+        drawText(options[i], 90, -10, 120, 14);
 
         ctx.restore();
     }
@@ -143,6 +171,7 @@ function rotateWheel() {
     spinTimeout = setTimeout(rotateWheel, 30);
 }
 
+/* ✅ RESULT PERFECT ALIGN WITH ARROW */
 function stopRotateWheel() {
     clearTimeout(spinTimeout);
 
@@ -153,7 +182,7 @@ function stopRotateWheel() {
     document.getElementById("result").innerText = options[index];
 }
 
-// WhatsApp Share
+/* SHARE */
 function shareSeva() {
     let seva = document.getElementById("result").innerText;
 
@@ -169,7 +198,7 @@ function shareSeva() {
     window.open("https://wa.me/?text=" + encodeURIComponent(msg));
 }
 
-// Complete + Confetti
+/* CONFETTI */
 function completeSeva() {
     let seva = document.getElementById("result").innerText;
 
@@ -179,8 +208,8 @@ function completeSeva() {
     }
 
     confetti({
-        particleCount: 120,
-        spread: 70,
+        particleCount: 150,
+        spread: 80,
         origin: { y: 0.6 }
     });
 
