@@ -140,16 +140,18 @@ function showApps() {
 }
 
 function pay(app) {
+
     let note = encodeURIComponent("તમારું એક નાનું દાન, એક ભૂખ્યા જીવને આશા આપી શકે છે ❤️");
     let upi = "upi://pay?pa=9998143506@ybl&pn=AKM&tn=" + note;
 
-    // 🍎 iPhone fix (NO intent)
+    // 🍎 iPhone → WhatsApp direct
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        window.location.href = upi;
+        let msg = encodeURIComponent("I want to donate for Jivdaya 🙏");
+        window.open("https://wa.me/919998143506?text=" + msg, "_blank");
         return;
     }
 
-    // 🤖 Android
+    // 🤖 Android (same as before)
     if (/Android/i.test(navigator.userAgent)) {
 
         if (app === "gpay") {
@@ -164,7 +166,7 @@ function pay(app) {
             window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=" + note + "#Intent;scheme=upi;package=net.one97.paytm;end;";
         }
 
-        // 🔥 fallback (agar fail ho)
+        // fallback
         setTimeout(() => {
             window.location.href = upi;
         }, 1200);
