@@ -72,6 +72,16 @@
             border-radius: 10px;
             border: none;
             font-size: 16px;
+            transition: all 0.3s ease; /* 🔥 bonus smooth */
+        }
+
+        /* 🔥 Fixed input when typing */
+        .fixed-input {
+            position: fixed;
+            bottom: 10px;
+            left: 5%;
+            width: 90%;
+            z-index: 1000;
         }
 
         html {
@@ -136,7 +146,8 @@
         type="text" 
         id="derasar" 
         placeholder="Enter Derasar Name (e.g. Paldi Jain Derasar Ahmedabad)"
-        onfocus="scrollToInput()"
+        onfocus="fixInput()"
+        onblur="resetInput()"
     >
 
     <br>
@@ -156,6 +167,7 @@ function goToActivities() {
     window.location.href = "activities.html";
 }
 
+// 🔥 Google Maps Direction
 function getDirections() {
     let place = document.getElementById("derasar").value;
 
@@ -183,12 +195,16 @@ function getDirections() {
     }
 }
 
-// 🔥 SCROLL FIX
-function scrollToInput() {
-    document.getElementById("derasar").scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+// 🔥 Fix input above keyboard
+function fixInput() {
+    let input = document.getElementById("derasar");
+    input.classList.add("fixed-input");
+}
+
+// 🔥 Reset position
+function resetInput() {
+    let input = document.getElementById("derasar");
+    input.classList.remove("fixed-input");
 }
 </script>
 
