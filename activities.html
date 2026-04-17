@@ -66,7 +66,7 @@
         }
 
         .btn {
-            margin-top: 20px;
+            margin-top: 15px;
             padding: 14px 25px;
             font-size: 16px;
             font-weight: bold;
@@ -75,6 +75,8 @@
             border-radius: 10px;
             color: white;
             cursor: pointer;
+            width: 80%;
+            max-width: 300px;
         }
 
         .btn:active {
@@ -100,7 +102,6 @@
         <div class="placeholder">Uploading Soon 📸</div>
         <div class="placeholder">Uploading Soon 📸</div>
         <div class="placeholder">Uploading Soon 📸</div>
-
         <div class="placeholder">Uploading Soon 📸</div>
         <div class="placeholder">Uploading Soon 📸</div>
         <div class="placeholder">Uploading Soon 📸</div>
@@ -125,8 +126,8 @@
     <div id="appBox">
         <p>Choose Payment App 👇</p>
 
-        <button class="btn" onclick="pay('gpay')">Google Pay</button><br>
-        <button class="btn" onclick="pay('phonepe')">PhonePe</button><br>
+        <button class="btn" onclick="pay('gpay')">Google Pay</button>
+        <button class="btn" onclick="pay('phonepe')">PhonePe</button>
         <button class="btn" onclick="pay('paytm')">Paytm</button>
     </div>
 
@@ -136,7 +137,7 @@
 function showApps() {
     let appBox = document.getElementById("appBox");
     appBox.style.display = "block";
-    appBox.scrollIntoView({ behavior: "smooth" });
+    appBox.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
 function pay(app) {
@@ -144,32 +145,36 @@ function pay(app) {
     let note = encodeURIComponent("તમારું એક નાનું દાન, એક ભૂખ્યા જીવને આશા આપી શકે છે ❤️");
     let upi = "upi://pay?pa=9998143506@ybl&pn=AKM&tn=" + note;
 
-    // 🍎 iPhone → WhatsApp direct
+    // 🍎 iPhone → WhatsApp
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
         let msg = encodeURIComponent("I want to donate for Jivdaya 🙏");
-        window.open("https://wa.me/919998143506?text=" + msg, "_blank");
+        window.location.href = "https://wa.me/919998143506?text=" + msg;
         return;
     }
 
-    // 🤖 Android (same as before)
+    // 🤖 Android → Direct UPI Apps
     if (/Android/i.test(navigator.userAgent)) {
 
+        let url = "";
+
         if (app === "gpay") {
-            window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=" + note + "#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end;";
+            url = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=" + note + "#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end;";
         }
 
         else if (app === "phonepe") {
-            window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=" + note + "#Intent;scheme=upi;package=com.phonepe.app;end;";
+            url = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=" + note + "#Intent;scheme=upi;package=com.phonepe.app;end;";
         }
 
         else if (app === "paytm") {
-            window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=" + note + "#Intent;scheme=upi;package=net.one97.paytm;end;";
+            url = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=" + note + "#Intent;scheme=upi;package=net.one97.paytm;end;";
         }
+
+        window.location.href = url;
 
         // fallback
         setTimeout(() => {
             window.location.href = upi;
-        }, 1200);
+        }, 1500);
     }
 
     // 💻 Laptop
