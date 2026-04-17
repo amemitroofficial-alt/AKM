@@ -136,15 +136,21 @@
 function showApps() {
     let appBox = document.getElementById("appBox");
     appBox.style.display = "block";
-
-    // 🔥 AUTO SCROLL
     appBox.scrollIntoView({ behavior: "smooth" });
 }
 
 function pay(app) {
     let note = encodeURIComponent("તમારું એક નાનું દાન, એક ભૂખ્યા જીવને આશા આપી શકે છે ❤️");
+    let upi = "upi://pay?pa=9998143506@ybl&pn=AKM&tn=" + note;
 
-    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    // 🍎 iPhone fix (NO intent)
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        window.location.href = upi;
+        return;
+    }
+
+    // 🤖 Android
+    if (/Android/i.test(navigator.userAgent)) {
 
         if (app === "gpay") {
             window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=" + note + "#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end;";
@@ -158,7 +164,14 @@ function pay(app) {
             window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=" + note + "#Intent;scheme=upi;package=net.one97.paytm;end;";
         }
 
-    } else {
+        // 🔥 fallback (agar fail ho)
+        setTimeout(() => {
+            window.location.href = upi;
+        }, 1200);
+    }
+
+    // 💻 Laptop
+    else {
         alert("Please open this website on your phone to donate 🙏");
     }
 }
