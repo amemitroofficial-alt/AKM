@@ -12,6 +12,7 @@
             background: black;
             color: white;
             text-align: center;
+            scroll-behavior: smooth;
         }
 
         .container {
@@ -82,7 +83,7 @@
 
         #appBox {
             display: none;
-            margin-top: 20px;
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -133,13 +134,17 @@
 
 <script>
 function showApps() {
-    document.getElementById("appBox").style.display = "block";
+    let appBox = document.getElementById("appBox");
+    appBox.style.display = "block";
+
+    // 🔥 AUTO SCROLL
+    appBox.scrollIntoView({ behavior: "smooth" });
 }
 
 function pay(app) {
     let note = encodeURIComponent("તમારું એક નાનું દાન, એક ભૂખ્યા જીવને આશા આપી શકે છે ❤️");
 
-    if (/Android/i.test(navigator.userAgent)) {
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 
         if (app === "gpay") {
             window.location.href = "intent://pay?pa=9998143506@ybl&pn=AKM&tn=" + note + "#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end;";
@@ -154,7 +159,7 @@ function pay(app) {
         }
 
     } else {
-        window.open("https://wa.me/919998143506?text=I want to donate for Jivdaya 🙏", "_blank");
+        alert("Please open this website on your phone to donate 🙏");
     }
 }
 </script>
