@@ -65,6 +65,15 @@
             transform: scale(0.95);
         }
 
+        input {
+            margin-top: 20px;
+            padding: 14px;
+            width: 70%;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+        }
+
         @keyframes zoom {
             0% { transform: scale(0.5); opacity: 0; }
             60% { transform: scale(1.1); opacity: 1; }
@@ -111,6 +120,22 @@
         SHOW ACTIVITIES
     </button>
 
+    <!-- NEW LINE (between 2nd and 3rd) -->
+    <div class="divider"></div>
+
+    <!-- NEW DERASAR SECTION -->
+    <div class="section-title">
+        GET DIRECTIONS FOR DERASAR 📍
+    </div>
+
+    <input type="text" id="derasar" placeholder="Enter Derasar Name (e.g. Paldi Jain Derasar Ahmedabad)">
+
+    <br>
+
+    <button class="btn" onclick="getDirections()">
+        GET DIRECTIONS 📍
+    </button>
+
 </div>
 
 <script>
@@ -120,6 +145,33 @@ function goToGenerator() {
 
 function goToActivities() {
     window.location.href = "activities.html";
+}
+
+function getDirections() {
+    let place = document.getElementById("derasar").value;
+
+    if (!place) {
+        alert("Please enter a derasar name");
+        return;
+    }
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+
+            let userLat = position.coords.latitude;
+            let userLng = position.coords.longitude;
+
+            let url = `https://www.google.com/maps/dir/${userLat},${userLng}/${encodeURIComponent(place)}`;
+
+            window.open(url, "_blank");
+
+        }, function() {
+            let url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(place)}`;
+            window.open(url, "_blank");
+        });
+    } else {
+        alert("Geolocation not supported");
+    }
 }
 </script>
 
