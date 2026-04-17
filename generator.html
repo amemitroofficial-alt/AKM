@@ -74,6 +74,10 @@
             font-size: 16px;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         @keyframes zoom {
             0% { transform: scale(0.5); opacity: 0; }
             60% { transform: scale(1.1); opacity: 1; }
@@ -120,15 +124,20 @@
         SHOW ACTIVITIES
     </button>
 
-    <!-- NEW LINE (between 2nd and 3rd) -->
+    <!-- LINE -->
     <div class="divider"></div>
 
-    <!-- NEW DERASAR SECTION -->
+    <!-- DERASAR SECTION -->
     <div class="section-title">
         GET DIRECTIONS FOR DERASAR 📍
     </div>
 
-    <input type="text" id="derasar" placeholder="Enter Derasar Name (e.g. Paldi Jain Derasar Ahmedabad)">
+    <input 
+        type="text" 
+        id="derasar" 
+        placeholder="Enter Derasar Name (e.g. Paldi Jain Derasar Ahmedabad)"
+        onfocus="scrollToInput()"
+    >
 
     <br>
 
@@ -172,6 +181,14 @@ function getDirections() {
     } else {
         alert("Geolocation not supported");
     }
+}
+
+// 🔥 SCROLL FIX
+function scrollToInput() {
+    document.getElementById("derasar").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
 }
 </script>
 
