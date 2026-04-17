@@ -4,6 +4,9 @@
     <title>Spin the Seva Wheel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- 🎉 Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
     <style>
         body {
             margin: 0;
@@ -21,7 +24,6 @@
             margin-bottom: 20px;
         }
 
-        /* 🔺 Arrow */
         .arrow {
             width: 0;
             height: 0;
@@ -78,7 +80,6 @@
 
     <div class="result" id="result"></div>
 
-    <!-- ACTION BUTTONS -->
     <button class="btn" onclick="shareSeva()">SHARE ON WHATSAPP 📲</button>
     <button class="btn" onclick="completeSeva()">I COMPLETED THIS SEVA ✅</button>
 
@@ -179,7 +180,7 @@ function shareSeva() {
     window.open("https://wa.me/?text=" + encodeURIComponent(msg));
 }
 
-// ✅ COMPLETE
+// 🎉 COMPLETE + CONFETTI
 function completeSeva() {
     let text = document.getElementById("result").innerText;
 
@@ -187,6 +188,13 @@ function completeSeva() {
         alert("Spin first!");
         return;
     }
+
+    // 🎉 Confetti burst
+    confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 }
+    });
 
     alert("🙏 Amazing! You completed your seva.");
 }
