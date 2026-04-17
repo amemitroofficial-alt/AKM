@@ -4,7 +4,7 @@
     <title>Spin the Seva Wheel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- 🎉 Confetti Library -->
+    <!-- Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
@@ -20,10 +20,6 @@
             padding-top: 50px;
         }
 
-        h2 {
-            margin-bottom: 20px;
-        }
-
         .arrow {
             width: 0;
             height: 0;
@@ -31,7 +27,6 @@
             border-right: 15px solid transparent;
             border-bottom: 25px solid red;
             margin: auto;
-            filter: drop-shadow(0 0 6px red);
         }
 
         canvas {
@@ -48,11 +43,6 @@
             border-radius: 12px;
             color: white;
             cursor: pointer;
-            box-shadow: 0 5px 0 #c97a00;
-        }
-
-        .btn:active {
-            transform: scale(0.95);
         }
 
         .result {
@@ -68,7 +58,7 @@
 
 <div class="container">
 
-    <h2>🎡 Spin the Seva Wheel</h2>
+    <h2>Spin the Seva Wheel</h2>
 
     <div class="arrow"></div>
 
@@ -80,19 +70,20 @@
 
     <div class="result" id="result"></div>
 
-    <button class="btn" onclick="shareSeva()">SHARE ON WHATSAPP 📲</button>
-    <button class="btn" onclick="completeSeva()">I COMPLETED THIS SEVA ✅</button>
+    <button class="btn" onclick="shareSeva()">SHARE ON WHATSAPP</button>
+    <button class="btn" onclick="completeSeva()">I COMPLETED THIS SEVA</button>
 
 </div>
 
 <script>
 const options = [
-    "🙏 Darshan Karo",
-    "💧 Paani Pilao",
-    "🐄 Jivdaya Karo",
-    "📿 5 Min Prayer",
-    "😊 Smile Spread Karo",
-    "🤝 Help Someone"
+    "Visit a Derasar today",
+    "Donate us for Jivdaya",
+    "Feed animals (Jivdaya)",
+    "Do Navkar Mantra 21 times",
+    "Avoid anger today",
+    "Help someone without expectation",
+    "Drink boiled water only today"
 ];
 
 const colors = ["#ff5733","#33ff57","#3357ff","#ff33a8","#ffd633","#33fff2"];
@@ -107,7 +98,6 @@ const ctx = document.getElementById("wheel").getContext("2d");
 
 function drawWheel() {
     const arc = Math.PI / (options.length / 2);
-
     ctx.clearRect(0,0,300,300);
 
     for (let i = 0; i < options.length; i++) {
@@ -125,9 +115,6 @@ function drawWheel() {
         ctx.rotate(angle + arc / 2);
 
         ctx.font = "bold 14px Arial";
-        ctx.shadowColor = "black";
-        ctx.shadowBlur = 4;
-
         ctx.fillText(options[i], 40, 5);
 
         ctx.restore();
@@ -166,37 +153,38 @@ function stopRotateWheel() {
     document.getElementById("result").innerText = options[index];
 }
 
-// 📲 SHARE
+// WhatsApp Share
 function shareSeva() {
-    let text = document.getElementById("result").innerText;
+    let seva = document.getElementById("result").innerText;
 
-    if (!text) {
-        alert("Spin first!");
+    if (!seva) {
+        alert("Spin first");
         return;
     }
 
-    let msg = `I got this seva from AKM 🎡\n${text} 🙏\nTry now: https://yourwebsite.com`;
+    let msg = "In spin I got " + seva + " seva\n" +
+              "You try and ask me what seva you got\n" +
+              "https://amemitroofficial-alt.github.io/AKM/";
 
     window.open("https://wa.me/?text=" + encodeURIComponent(msg));
 }
 
-// 🎉 COMPLETE + CONFETTI
+// Complete + Confetti
 function completeSeva() {
-    let text = document.getElementById("result").innerText;
+    let seva = document.getElementById("result").innerText;
 
-    if (!text) {
-        alert("Spin first!");
+    if (!seva) {
+        alert("Spin first");
         return;
     }
 
-    // 🎉 Confetti burst
     confetti({
-        particleCount: 150,
-        spread: 80,
+        particleCount: 120,
+        spread: 70,
         origin: { y: 0.6 }
     });
 
-    alert("🙏 Amazing! You completed your seva.");
+    alert("You completed your seva");
 }
 
 function easeOut(t, b, c, d) {
