@@ -65,6 +65,58 @@
             transform: scale(0.95);
         }
 
+        /* HELP BUTTON */
+        .help-btn {
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: #25D366;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* POPUP */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-box {
+            background: #111;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .popup-box input {
+            padding: 10px;
+            width: 90%;
+            border-radius: 6px;
+            border: none;
+            margin-top: 10px;
+        }
+
+        .popup-box button {
+            margin-top: 15px;
+            background: orange;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
         @keyframes zoom {
             0% { transform: scale(0.5); opacity: 0; }
             60% { transform: scale(1.1); opacity: 1; }
@@ -77,7 +129,6 @@
 
 <div class="container">
 
-    <!-- TOP -->
     <div class="title">
         WELCOME TO <br>
         AME KALYAN MITRO GROUP
@@ -87,10 +138,8 @@
         🙏 Nayi Soch, Purane Sanskar, Dharam, Seva Aur Ekta Ka Sangam 🙏
     </div>
 
-    <!-- LINE -->
     <div class="divider"></div>
 
-    <!-- IMAGE SECTION -->
     <div class="sub-heading">
         MAKE YOUR AKM IDENTITY ✨
     </div>
@@ -99,10 +148,8 @@
         MAKE MY IMAGE ✨
     </button>
 
-    <!-- LINE -->
     <div class="divider"></div>
 
-    <!-- JIVDAYA SECTION -->
     <div class="section-title">
         OUR JIVDAYA ACTIVITY 🐄
     </div>
@@ -111,10 +158,8 @@
         SHOW ACTIVITIES
     </button>
 
-    <!-- LINE -->
     <div class="divider"></div>
 
-    <!-- DERASAR BUTTON -->
     <div class="section-title">
         FIND DERASAR 📍
     </div>
@@ -123,10 +168,8 @@
         FIND MY DERASAR 📍
     </button>
 
-    <!-- NEW LINE (between 3rd & 4th) -->
     <div class="divider"></div>
 
-    <!-- NEW SPIN WHEEL SECTION -->
     <div class="section-title">
         SPIN THE SEVA WHEEL 🎡
     </div>
@@ -135,6 +178,20 @@
         SPIN NOW 🎡
     </button>
 
+    <!-- ✅ HELP BUTTON -->
+    <button class="help-btn" onclick="openHelp()">
+        💬 Need Help?
+    </button>
+
+</div>
+
+<!-- POPUP -->
+<div id="helpPopup" class="popup">
+    <div class="popup-box">
+        <h3>Need Help?</h3>
+        <input type="text" id="userName" placeholder="Enter your name">
+        <button onclick="goWhatsApp()">Continue</button>
+    </div>
 </div>
 
 <script>
@@ -152,6 +209,26 @@ function openDerasarPage() {
 
 function openWheel() {
     window.location.href = "seva-wheel.html";
+}
+
+/* HELP FLOW */
+function openHelp() {
+    document.getElementById("helpPopup").style.display = "flex";
+}
+
+function goWhatsApp() {
+    let name = document.getElementById("userName").value;
+
+    if(name.trim() === "") {
+        alert("Please enter your name");
+        return;
+    }
+
+    let message = `Hello, my name is ${name}. I need help for Ame Kalyan Mitro.`;
+
+    let url = "https://wa.me/919998143506?text=" + encodeURIComponent(message);
+
+    window.open(url, "_blank");
 }
 </script>
 
