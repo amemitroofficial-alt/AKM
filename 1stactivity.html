@@ -43,9 +43,10 @@
             border-radius: 10px;
             color: white;
             cursor: pointer;
+            margin: 10px;
         }
 
-        /* 🔥 FULLSCREEN MODAL */
+        /* FULLSCREEN MODAL */
         #videoModal {
             display: none;
             position: fixed;
@@ -88,11 +89,15 @@
         આ અમારી પ્રથમ જીવદયા પ્રવૃત્તિ હતી.
     </div>
 
-    <button class="btn" onclick="openVideo()">WATCH VIDEO 🎥</button>
+    <!-- FIRST VIDEO BUTTON -->
+    <button class="btn" onclick="openVideo1()">WATCH 1st VIDEO 🎥</button>
+
+    <!-- SECOND VIDEO BUTTON -->
+    <button class="btn" onclick="openVideo2()">WATCH 2nd VIDEO 🎥</button>
 
 </div>
 
-<!-- 🔥 VIDEO MODAL -->
+<!-- VIDEO MODAL -->
 <div id="videoModal">
     <span class="closeBtn" onclick="closeVideo()">✖</span>
 
@@ -103,11 +108,18 @@
 </div>
 
 <script>
-function openVideo() {
+function openVideo1() {
     document.getElementById("videoModal").style.display = "block";
 
     document.getElementById("videoFrame").src =
     "https://player.cloudinary.com/embed/?cloud_name=dgexmrayo&public_id=Jivdaya_w1zwrs&autoplay=true&muted=true";
+}
+
+function openVideo2() {
+    document.getElementById("videoModal").style.display = "block";
+
+    document.getElementById("videoFrame").src =
+    "https://player.cloudinary.com/embed/?cloud_name=dgexmrayo&public_id=2nd_y39ejh&autoplay=true&muted=true";
 }
 
 function closeVideo() {
