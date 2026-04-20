@@ -106,18 +106,23 @@
 <div id="videoModal">
     <span class="closeBtn" onclick="closeVideo()">✖</span>
 
-    <video id="videoPlayer" controls autoplay playsinline>
-        <source src="jivdaya.mp4" type="video/mp4">
+    <video id="videoPlayer" controls autoplay muted playsinline>
+        <source src="https://raw.githubusercontent.com/amemitroofficial-alt/AKM/main/jivdaya.mp4" type="video/mp4">
     </video>
 </div>
 
 <script>
 function openVideo() {
-    document.getElementById("videoModal").style.display = "block";
+    let modal = document.getElementById("videoModal");
+    let video = document.getElementById("videoPlayer");
+
+    modal.style.display = "block";
+    video.play().catch(() => {});
 }
 
 function closeVideo() {
     let video = document.getElementById("videoPlayer");
+
     video.pause();
     video.currentTime = 0;
 
