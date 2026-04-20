@@ -111,7 +111,7 @@
 
 <script>
 function openVideo() {
-    window.open("jivdaya.mp4", "_blank");
+    window.open("https://drive.google.com/file/d/102DuN_icJh0hcJo8zkixFQXypJJJ7UED/preview", "_blank");
 }
 
 function showApps() {
@@ -125,14 +125,12 @@ function pay(app) {
     let note = encodeURIComponent("તમારું એક નાનું દાન, એક ભૂખ્યા જીવને આશા આપી શકે છે ❤️");
     let upi = "upi://pay?pa=9998143506@ybl&pn=AKM&tn=" + note;
 
-    // 🍎 iPhone → WhatsApp
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
         let msg = encodeURIComponent("I want to donate for Jivdaya 🙏");
         window.location.href = "https://wa.me/919998143506?text=" + msg;
         return;
     }
 
-    // 🤖 Android → Direct UPI Apps
     if (/Android/i.test(navigator.userAgent)) {
 
         let url = "";
@@ -151,13 +149,11 @@ function pay(app) {
 
         window.location.href = url;
 
-        // fallback
         setTimeout(() => {
             window.location.href = upi;
         }, 1500);
     }
 
-    // 💻 Laptop
     else {
         alert("Please open this website on your phone to donate 🙏");
     }
