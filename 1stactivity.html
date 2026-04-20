@@ -27,10 +27,8 @@
         .sub-title {
             font-size: 15px;
             color: #ddd;
-            font-weight: 500;
             margin-bottom: 20px;
             line-height: 1.6;
-            padding: 0 10px;
         }
 
         .highlight {
@@ -39,7 +37,6 @@
         }
 
         .btn {
-            margin-top: 20px;
             padding: 14px 25px;
             font-size: 16px;
             font-weight: bold;
@@ -48,11 +45,8 @@
             border-radius: 10px;
             color: white;
             cursor: pointer;
-            width: 80%;
-            max-width: 300px;
         }
 
-        /* 🔥 FULLSCREEN VIDEO */
         #videoModal {
             display: none;
             position: fixed;
@@ -70,14 +64,12 @@
             object-fit: cover;
         }
 
-        /* CLOSE BUTTON */
         .closeBtn {
             position: absolute;
             top: 20px;
             right: 20px;
             font-size: 28px;
             color: white;
-            z-index: 1000;
             cursor: pointer;
         }
     </style>
@@ -94,7 +86,7 @@
     <div class="sub-title">
         મહાવીર જન્મ કલ્યાણક નિમિત્તે 
         <span class="highlight">JYMS FOUNDATION</span> દ્વારા લાડુ વિતરણ દરમિયાન વધેલા લાડુઓને 
-        <span class="highlight">AME KALYAN MITRO GROUP</span> દ્વારા વડોદરા પાંજરાપોળમાં ગાયોને ખવડાવવામાં આવ્યા — 
+        <span class="highlight">AME KALYAN MITRO GROUP</span> દ્વારા વડોદરા પાંજરાપોળમાં ગાયોને ખવડાવવામાં આવ્યા —
         આ અમારી પ્રથમ જીવદયા પ્રવૃત્તિ હતી.
     </div>
 
@@ -102,30 +94,23 @@
 
 </div>
 
-<!-- 🔥 VIDEO MODAL -->
 <div id="videoModal">
     <span class="closeBtn" onclick="closeVideo()">✖</span>
 
     <video id="videoPlayer" controls autoplay muted playsinline>
-        <source src="https://raw.githubusercontent.com/amemitroofficial-alt/AKM/main/jivdaya.mp4" type="video/mp4">
+        <source src="https://cdn.jsdelivr.net/gh/amemitroofficial-alt/AKM@main/jivdaya.mp4" type="video/mp4">
     </video>
 </div>
 
 <script>
 function openVideo() {
-    let modal = document.getElementById("videoModal");
-    let video = document.getElementById("videoPlayer");
-
-    modal.style.display = "block";
-    video.play().catch(() => {});
+    document.getElementById("videoModal").style.display = "block";
 }
 
 function closeVideo() {
     let video = document.getElementById("videoPlayer");
-
     video.pause();
     video.currentTime = 0;
-
     document.getElementById("videoModal").style.display = "none";
 }
 </script>
