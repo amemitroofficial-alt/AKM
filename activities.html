@@ -105,9 +105,9 @@
         OUR JIVDAYA ACTIVITY 🐄
     </div>
 
-    <!-- WATCH VIDEO BUTTON -->
+    <!-- 🔥 CHANGED BUTTON -->
     <div style="margin-top: 20px;">
-        <button class="btn" onclick="openVideo()">WATCH VIDEO 🎥</button>
+        <button class="btn" onclick="openActivity()">1st ACTIVITY 🎯</button>
     </div>
 
     <div class="divider"></div>
@@ -134,7 +134,7 @@
 
 </div>
 
-<!-- 🔥 VIDEO MODAL -->
+<!-- 🔥 VIDEO MODAL (UNCHANGED) -->
 <div id="videoModal">
     <span class="closeBtn" onclick="closeVideo()">✖</span>
     <iframe 
@@ -144,6 +144,12 @@
 </div>
 
 <script>
+
+// 🔥 NEW FUNCTION
+function openActivity() {
+    window.location.href = "1stactivity.html";
+}
+
 function openVideo() {
     document.getElementById("videoModal").style.display = "block";
 }
