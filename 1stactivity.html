@@ -21,7 +21,16 @@
         .title {
             font-size: 24px;
             font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* 🔥 NEW SUBTITLE STYLE */
+        .sub-title {
+            font-size: 15px;
+            color: #ccc;
             margin-bottom: 20px;
+            line-height: 1.5;
+            padding: 0 10px;
         }
 
         .btn {
@@ -60,6 +69,11 @@
         OUR FIRST ACTIVITY 🐄
     </div>
 
+    <!-- 🔥 ADDED GUJARATI TEXT -->
+    <div class="sub-title">
+        મહાવીર જન્મ કલ્યાણક નિમિત્તે JYMS Foundation દ્વારા લાડુ વિતરણ દરમિયાન વધેલા લાડુઓને Ame Kalyan Mitro દ્વારા વડોદરા પાંજરાપોળમાં ગાયોને ખવડાવવામાં આવ્યા — આ અમારી પ્રથમ જીવદયા પ્રવૃત્તિ હતી.
+    </div>
+
     <!-- WATCH VIDEO BUTTON -->
     <button class="btn" onclick="startVideo()">WATCH VIDEO 🎥</button>
 
@@ -78,7 +92,6 @@
 function startVideo() {
     document.getElementById("videoBox").style.display = "block";
 
-    // video load on click
     document.getElementById("videoFrame").src =
     "https://drive.google.com/file/d/102DuN_icJh0hcJo8zkixFQXypJJJ7UED/preview";
 }
