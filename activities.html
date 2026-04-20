@@ -67,6 +67,33 @@
             display: none;
             margin-top: 30px;
         }
+
+        /* 🔥 VIDEO POPUP */
+        #videoModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 999;
+        }
+
+        #videoModal iframe {
+            width: 100%;
+            height: 60%;
+            margin-top: 20%;
+        }
+
+        .closeBtn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 25px;
+            color: white;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -95,10 +122,8 @@
         માત્ર ₹10 પણ મોટો ફેરફાર લાવી શકે છે 🙏
     </div>
 
-    <!-- DONATE BUTTON -->
     <button class="btn" onclick="showApps()">DONATE NOW ❤️</button>
 
-    <!-- APP SELECTION -->
     <div id="appBox">
         <p>Choose Payment App 👇</p>
 
@@ -109,10 +134,22 @@
 
 </div>
 
+<!-- 🔥 VIDEO MODAL -->
+<div id="videoModal">
+    <span class="closeBtn" onclick="closeVideo()">✖</span>
+    <iframe 
+        src="https://drive.google.com/file/d/102DuN_icJh0hcJo8zkixFQXypJJJ7UED/preview"
+        allow="autoplay">
+    </iframe>
+</div>
+
 <script>
 function openVideo() {
-    // MOBILE FRIENDLY LINK
-    window.location.href = "https://drive.google.com/file/d/102DuN_icJh0hcJo8zkixFQXypJJJ7UED/view";
+    document.getElementById("videoModal").style.display = "block";
+}
+
+function closeVideo() {
+    document.getElementById("videoModal").style.display = "none";
 }
 
 function showApps() {
