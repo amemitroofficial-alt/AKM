@@ -25,24 +25,15 @@
             margin-bottom: 20px;
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            padding: 10px;
+        .video-box {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
         }
 
-        .placeholder {
+        video {
             width: 100%;
-            aspect-ratio: 9/16;
-            background: #222;
             border-radius: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #aaa;
-            font-size: 12px;
-            border: 2px dashed #555;
         }
 
         .divider {
@@ -98,13 +89,12 @@
         OUR JIVDAYA ACTIVITY 🐄
     </div>
 
-    <div class="gallery">
-        <div class="placeholder">Uploading Soon 📸</div>
-        <div class="placeholder">Uploading Soon 📸</div>
-        <div class="placeholder">Uploading Soon 📸</div>
-        <div class="placeholder">Uploading Soon 📸</div>
-        <div class="placeholder">Uploading Soon 📸</div>
-        <div class="placeholder">Uploading Soon 📸</div>
+    <!-- VIDEO ADDED -->
+    <div class="video-box">
+        <video controls autoplay muted loop>
+            <source src="jivdaya.mp4" type="video/mp4">
+            Your browser does not support video.
+        </video>
     </div>
 
     <div class="divider"></div>
