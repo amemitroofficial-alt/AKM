@@ -65,7 +65,6 @@
             transform: scale(0.95);
         }
 
-        /* POPUP */
         .popup {
             display: none;
             position: fixed;
@@ -166,7 +165,6 @@
         SPIN NOW 🎡
     </button>
 
-    <!-- ✅ HELP SECTION (CENTER + ORANGE) -->
     <div class="divider"></div>
 
     <div class="section-title">
@@ -175,6 +173,17 @@
 
     <button class="btn" onclick="openHelp()">
         NEED HELP 💬
+    </button>
+
+    <!-- 🔥 NEW ABOUT US SECTION -->
+    <div class="divider"></div>
+
+    <div class="section-title">
+        ABOUT US 📖
+    </div>
+
+    <button class="btn" onclick="openAbout()">
+        ABOUT US 📖
     </button>
 
 </div>
@@ -223,6 +232,11 @@ function goWhatsApp() {
     let url = "https://wa.me/919998143506?text=" + encodeURIComponent(message);
 
     window.open(url, "_blank");
+}
+
+/* 🔥 NEW FUNCTION */
+function openAbout() {
+    window.location.href = "about.html";
 }
 </script>
 
