@@ -25,17 +25,6 @@
             margin-bottom: 20px;
         }
 
-        .video-box {
-            width: 100%;
-            max-width: 400px;
-            margin: auto;
-        }
-
-        video {
-            width: 100%;
-            border-radius: 12px;
-        }
-
         .divider {
             margin: 25px auto;
             width: 90%;
@@ -89,12 +78,9 @@
         OUR JIVDAYA ACTIVITY 🐄
     </div>
 
-    <!-- VIDEO ADDED -->
-    <div class="video-box">
-        <video controls autoplay muted loop>
-            <source src="jivdaya.mp4" type="video/mp4">
-            Your browser does not support video.
-        </video>
+    <!-- WATCH VIDEO BUTTON -->
+    <div style="margin-top: 20px;">
+        <button class="btn" onclick="openVideo()">WATCH VIDEO 🎥</button>
     </div>
 
     <div class="divider"></div>
@@ -124,6 +110,10 @@
 </div>
 
 <script>
+function openVideo() {
+    window.open("jivdaya.mp4", "_blank");
+}
+
 function showApps() {
     let appBox = document.getElementById("appBox");
     appBox.style.display = "block";
