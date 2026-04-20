@@ -96,6 +96,14 @@ function getDirections() {
         return;
     }
 
+    // 📱 iPhone / iPad fix
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        let url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place)}`;
+        window.open(url, "_blank");
+        return;
+    }
+
+    // 🤖 Android / others (with live location)
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
 
@@ -103,7 +111,6 @@ function getDirections() {
             let userLng = position.coords.longitude;
 
             let url = `https://www.google.com/maps/dir/${userLat},${userLng}/${encodeURIComponent(place)}`;
-
             window.open(url, "_blank");
 
         }, function() {
