@@ -27,10 +27,29 @@
 
         .modal-box {
             background: #111;
-            padding: 25px;
             border-radius: 15px;
             width: 90%;
             max-width: 350px;
+            overflow: hidden; /* important */
+        }
+
+        /* 🔥 HEADER (FIX) */
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .modal-body {
+            padding: 20px;
         }
 
         input {
@@ -38,7 +57,7 @@
             padding: 12px;
             border-radius: 8px;
             border: none;
-            margin-top: 15px;
+            margin-top: 10px;
             font-size: 14px;
         }
 
@@ -62,24 +81,20 @@
     <div class="modal-box">
 
         <!-- ✅ HEADER WITH CLOSE -->
-        <h3 style="display:flex; justify-content:center; align-items:center; position:relative;">
-            Need Help?
-            
-            <span onclick="closeHelp()" style="
-                position:absolute;
-                right:0;
-                top:-5px;
-                cursor:pointer;
-                font-size:20px;
-                color:white;
-            ">✖</span>
-        </h3>
+        <div class="modal-header">
+            <span>Need Help?</span>
+            <span class="close-btn" onclick="closeHelp()">✖</span>
+        </div>
 
-        <input type="text" id="nameInput" placeholder="Enter your name">
+        <div class="modal-body">
 
-        <br>
+            <input type="text" id="nameInput" placeholder="Enter your name">
 
-        <button onclick="goToWhatsApp()">Continue</button>
+            <br>
+
+            <button onclick="goToWhatsApp()">Continue</button>
+
+        </div>
 
     </div>
 
