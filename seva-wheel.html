@@ -19,13 +19,26 @@
             padding-top: 40px;
         }
 
+        /* BACK BUTTON */
+        .back-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: black;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
         /* ✅ CORRECT ARROW (downward toward wheel) */
         .arrow {
             width: 0;
             height: 0;
             border-left: 18px solid transparent;
             border-right: 18px solid transparent;
-            border-top: 30px solid red; /* FIXED */
+            border-top: 30px solid red;
             margin: auto;
         }
 
@@ -55,6 +68,9 @@
 </head>
 
 <body>
+
+<!-- BACK BUTTON -->
+<button class="back-btn" onclick="goBack()">← Back</button>
 
 <div class="container">
 
@@ -96,7 +112,6 @@ let spinTimeTotal = 0;
 
 const ctx = document.getElementById("wheel").getContext("2d");
 
-/* ✅ MULTILINE TEXT FUNCTION */
 function drawText(text, x, y, maxWidth, lineHeight) {
     let words = text.split(" ");
     let line = "";
@@ -171,7 +186,6 @@ function rotateWheel() {
     spinTimeout = setTimeout(rotateWheel, 30);
 }
 
-/* ✅ RESULT PERFECT ALIGN WITH ARROW */
 function stopRotateWheel() {
     clearTimeout(spinTimeout);
 
@@ -182,7 +196,6 @@ function stopRotateWheel() {
     document.getElementById("result").innerText = options[index];
 }
 
-/* SHARE */
 function shareSeva() {
     let seva = document.getElementById("result").innerText;
 
@@ -198,7 +211,6 @@ function shareSeva() {
     window.open("https://wa.me/?text=" + encodeURIComponent(msg));
 }
 
-/* CONFETTI */
 function completeSeva() {
     let seva = document.getElementById("result").innerText;
 
@@ -220,6 +232,11 @@ function easeOut(t, b, c, d) {
     const ts = (t /= d) * t;
     const tc = ts * t;
     return b + c * (tc + -3 * ts + 3 * t);
+}
+
+/* BACK FUNCTION */
+function goBack() {
+    window.history.back();
 }
 
 drawWheel();
