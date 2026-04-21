@@ -96,10 +96,26 @@
             display: none;
             margin-top: 15px;
         }
+
+        /* Back Button Style */
+        .back-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: black;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 14px;
+            box-shadow: none;
+        }
     </style>
 </head>
 
 <body>
+
+<!-- Back Button -->
+<button class="back-btn" onclick="goBack()">← Back</button>
 
 <img src="AKMLOGO2.png" class="logo">
 
@@ -207,6 +223,11 @@ function downloadImage() {
     link.download = "AKM.png";
     link.href = canvas.toDataURL("image/png");
     link.click();
+}
+
+/* Back Function */
+function goBack() {
+    window.history.back();
 }
 </script>
 
