@@ -13,8 +13,23 @@
             color: white;
         }
 
+        /* BACK BUTTON */
+        .back-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: black;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
         .container {
             padding: 20px 15px;
+            margin-top: 60px; /* 👈 content niche */
         }
 
         .title {
@@ -35,7 +50,6 @@
             margin-top: 25px;
         }
 
-        /* 🔥 CENTERED SECTION TITLES */
         .section-title {
             color: orange;
             font-size: 18px;
@@ -66,6 +80,9 @@
 
 <body>
 
+<!-- BACK BUTTON -->
+<div class="back-btn" onclick="goBack()">← Back</div>
+
 <div class="container">
 
     <div class="title">
@@ -76,7 +93,6 @@
         AME KALYAN MITRO GROUP A PART OF JYMS FOUNDATION
     </div>
 
-    <!-- શરૂઆત -->
     <div class="section">
         <div class="section-title">શરૂઆત 🚀</div>
         <div class="text">
@@ -90,7 +106,6 @@
 
     <div class="divider"></div>
 
-    <!-- કાર્ય -->
     <div class="section">
         <div class="section-title">અમારું કાર્ય</div>
         <div class="text">
@@ -100,7 +115,6 @@
 
     <div class="divider"></div>
 
-    <!-- હાલ -->
     <div class="section">
         <div class="section-title">હાલમાં અમે શું કરી રહ્યા છીએ 🔥</div>
         <div class="text">
@@ -110,7 +124,6 @@
 
     <div class="divider"></div>
 
-    <!-- લક્ષ્ય -->
     <div class="section">
         <div class="section-title">અમારું લક્ષ્ય 🌍</div>
         <div class="text">
@@ -119,6 +132,12 @@
     </div>
 
 </div>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 
 </body>
 </html>
