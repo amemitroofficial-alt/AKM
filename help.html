@@ -1,63 +1,111 @@
-<div id="helpModal" style="
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Help Popup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div style="
-        background: #111;
-        padding: 25px;
-        border-radius: 15px;
-        width: 90%;
-        max-width: 350px;
-        position: relative;
-        text-align: center;
-    ">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: black;
+            color: white;
+            text-align: center;
+        }
 
-        <!-- ❌ CLOSE BUTTON -->
-        <span onclick="closeHelp()" style="
+        #helpModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-box {
+            background: #111;
+            padding: 25px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 350px;
+            position: relative;
+        }
+
+        /* ❌ CLOSE BUTTON */
+        .close-btn {
             position: absolute;
             top: 10px;
             right: 15px;
             font-size: 18px;
             cursor: pointer;
             color: white;
-        ">❌</span>
+        }
 
-        <h3>Need Help?</h3>
-
-        <input type="text" placeholder="Enter your name" style="
+        input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border-radius: 8px;
             border: none;
-            margin: 15px 0;
-        ">
+            margin-top: 15px;
+            font-size: 14px;
+        }
 
-        <br>
-
-        <button style="
+        button {
+            margin-top: 15px;
+            padding: 12px 20px;
             background: orange;
             border: none;
-            padding: 10px 20px;
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
-        ">
-            Continue
-        </button>
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="helpModal">
+
+    <div class="modal-box">
+
+        <!-- ❌ CLOSE -->
+        <span class="close-btn" onclick="closeHelp()">✖</span>
+
+        <h3>Need Help?</h3>
+
+        <input type="text" id="nameInput" placeholder="Enter your name">
+
+        <br>
+
+        <button onclick="goToWhatsApp()">Continue</button>
 
     </div>
+
 </div>
 
 <script>
 function closeHelp() {
     document.getElementById("helpModal").style.display = "none";
 }
+
+function goToWhatsApp() {
+    let name = document.getElementById("nameInput").value;
+
+    if (!name) {
+        alert("Please enter your name");
+        return;
+    }
+
+    let msg = "Hello, my name is " + name + ", I want to help for Ame Kalyan Mitro";
+    let url = "https://wa.me/919998143506?text=" + encodeURIComponent(msg);
+
+    window.open(url, "_blank");
+}
 </script>
+
+</body>
+</html>
