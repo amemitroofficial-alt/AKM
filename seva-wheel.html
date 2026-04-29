@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Spin the Seva Wheel</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spin the Seva Wheel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -10,19 +10,14 @@
 body{
 margin:0;
 font-family:Arial;
-
-/* Pastel Rainbow Background */
-background: linear-gradient(
-to bottom,
-#fffaf0,
-#fff0f5,
-#eef7ff,
-#f3fff1,
-#fff8dc
-);
-
-color:#3d2b00;
 text-align:center;
+color:#3d2b00;
+
+/* Premium soft rainbow background */
+background:
+radial-gradient(circle at center, rgba(255,255,255,.95) 0%, rgba(255,248,220,.95) 35%, rgba(255,230,230,.9) 55%, rgba(220,245,255,.85) 75%, rgba(235,225,255,.85) 100%),
+linear-gradient(135deg,#ffd6d6,#ffe7c2,#fff7b8,#dfffdc,#d9ecff,#ead8ff);
+min-height:100vh;
 }
 
 .container{
@@ -49,10 +44,12 @@ border-left:18px solid transparent;
 border-right:18px solid transparent;
 border-top:30px solid red;
 margin:auto;
+filter:drop-shadow(0 2px 3px rgba(0,0,0,.2));
 }
 
-canvas{
+#wheel{
 margin-top:10px;
+filter:drop-shadow(0 8px 18px rgba(0,0,0,.15));
 }
 
 .btn{
@@ -65,11 +62,12 @@ border:none;
 border-radius:10px;
 color:white;
 cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,.12);
 }
 
 .result{
 margin-top:20px;
-font-size:20px;
+font-size:22px;
 font-weight:bold;
 color:#008060;
 }
@@ -101,13 +99,13 @@ color:#008060;
 
 <script>
 const options = [
-"Visit a Derasar today",
-"Donate us for Jivdaya",
-"Feed animals (Jivdaya)",
-"Do Navkar Mantra 21 times",
-"Avoid anger today",
-"Help someone without expectation",
-"Drink boiled water only today"
+"Don't get Angry",
+"Visit Derasar",
+"Drink Boil Water",
+"Do any Jivdaya",
+"27 times Navkar Mantra Jap",
+"Do not eat Outside Food",
+"Do not eat non-Jain food"
 ];
 
 const colors = [
@@ -140,8 +138,7 @@ let testWidth=ctx.measureText(testLine).width;
 if(testWidth>maxWidth && n>0){
 lines.push(line);
 line=words[n]+" ";
-}
-else{
+}else{
 line=testLine;
 }
 }
@@ -153,10 +150,12 @@ ctx.fillText(lines[i].trim(),x,y+(i*lineHeight));
 }
 
 function drawWheel(){
+
 const arc=Math.PI/(options.length/2);
 ctx.clearRect(0,0,300,300);
 
 for(let i=0;i<options.length;i++){
+
 const angle=startAngle+i*arc;
 
 ctx.fillStyle=colors[i];
@@ -175,10 +174,21 @@ ctx.font="900 14px Arial";
 ctx.textAlign="center";
 ctx.textBaseline="middle";
 
-drawText(options[i],90,-12,125,16);
+drawText(options[i],92,-12,120,15);
 
 ctx.restore();
 }
+
+/* center circle */
+ctx.beginPath();
+ctx.fillStyle="#fff8dc";
+ctx.arc(150,150,28,0,Math.PI*2);
+ctx.fill();
+
+ctx.fillStyle="#b36b00";
+ctx.font="bold 13px Arial";
+ctx.textAlign="center";
+ctx.fillText("SPIN",150,155);
 }
 
 function spinWheel(){
@@ -189,6 +199,7 @@ rotateWheel();
 }
 
 function rotateWheel(){
+
 spinTime+=30;
 
 if(spinTime>=spinTimeTotal){
@@ -196,14 +207,23 @@ stopRotateWheel();
 return;
 }
 
-const spinAngle=spinAngleStart-easeOut(spinTime,0,spinAngleStart,spinTimeTotal);
+const spinAngle=
+spinAngleStart-easeOut(
+spinTime,
+0,
+spinAngleStart,
+spinTimeTotal
+);
+
 startAngle+=(spinAngle*Math.PI/180);
+
 drawWheel();
 
 spinTimeout=setTimeout(rotateWheel,30);
 }
 
 function stopRotateWheel(){
+
 clearTimeout(spinTimeout);
 
 const degrees=startAngle*180/Math.PI+90;
@@ -214,6 +234,7 @@ document.getElementById("result").innerText=options[index];
 }
 
 function shareSeva(){
+
 let seva=document.getElementById("result").innerText;
 
 if(!seva){
@@ -221,14 +242,19 @@ alert("Spin first");
 return;
 }
 
-let msg="In spin I got "+seva+" seva\n"+
+let msg=
+"In spin I got "+seva+" seva\n"+
 "You try and ask me what seva you got\n"+
 "https://amemitroofficial-alt.github.io/AKM/";
 
-window.open("https://wa.me/?text="+encodeURIComponent(msg));
+window.open(
+"https://wa.me/?text="+encodeURIComponent(msg)
+);
+
 }
 
 function completeSeva(){
+
 let seva=document.getElementById("result").innerText;
 
 if(!seva){
@@ -256,6 +282,7 @@ window.history.back();
 }
 
 drawWheel();
+
 </script>
 
 </body>
