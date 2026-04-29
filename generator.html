@@ -5,257 +5,283 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-            background: black;
-            color: white;
-            text-align: center;
-        }
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:black;
+color:white;
+text-align:center;
+}
 
-        .container {
-            padding-top: 60px;
-            animation: zoom 1.5s ease;
-        }
+.container{
+padding-top:60px;
+animation:zoom 1.5s ease;
+}
 
-        .title {
-            font-size: 28px;
-            font-weight: bold;
-            line-height: 1.5;
-        }
+.title{
+font-size:28px;
+font-weight:bold;
+line-height:1.5;
+}
 
-        .tagline {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #ccc;
-        }
+.tagline{
+margin-top:10px;
+font-size:14px;
+color:#ccc;
+}
 
-        .divider {
-            margin: 40px auto;
-            width: 85%;
-            height: 1px;
-            background: #555;
-        }
+.divider{
+margin:40px auto;
+width:85%;
+height:1px;
+background:#555;
+}
 
-        .sub-heading {
-            font-size: 18px;
-            font-weight: bold;
-        }
+.sub-heading{
+font-size:18px;
+font-weight:bold;
+}
 
-        .section-title {
-            font-size: 20px;
-            font-weight: bold;
-        }
+.section-title{
+font-size:20px;
+font-weight:bold;
+}
 
-        .btn {
-            margin-top: 20px;
-            padding: 16px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            background: orange;
-            border: none;
-            border-radius: 12px;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 5px 0 #c97a00;
-        }
+.btn{
+margin-top:20px;
+padding:16px 30px;
+font-size:18px;
+font-weight:bold;
+background:orange;
+border:none;
+border-radius:12px;
+color:white;
+cursor:pointer;
+box-shadow:0 5px 0 #c97a00;
+}
 
-        .btn:active {
-            transform: scale(0.95);
-        }
+.btn:active{
+transform:scale(0.95);
+}
 
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            justify-content: center;
-            align-items: center;
-        }
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+}
 
-        .popup-box {
-            background: #111;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            color: white;
-            width: 80%;
-            max-width: 300px;
-            position: relative; /* ✅ IMPORTANT */
-        }
+.popup-box{
+background:#111;
+padding:25px;
+border-radius:12px;
+text-align:center;
+color:white;
+width:80%;
+max-width:300px;
+position:relative;
+}
 
-        /* ✅ CLOSE BUTTON */
-        .close-x {
-            position: absolute;
-            top: 8px;
-            right: 12px;
-            font-size: 18px;
-            cursor: pointer;
-            color: white;
-        }
+.close-x{
+position:absolute;
+top:8px;
+right:12px;
+font-size:18px;
+cursor:pointer;
+color:white;
+}
 
-        .popup-box input {
-            padding: 10px;
-            width: 90%;
-            border-radius: 6px;
-            border: none;
-            margin-top: 10px;
-        }
+.popup-box input{
+padding:10px;
+width:90%;
+border-radius:6px;
+border:none;
+margin-top:10px;
+}
 
-        .popup-box button {
-            margin-top: 15px;
-            background: orange;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+.popup-box button{
+margin-top:15px;
+background:orange;
+border:none;
+padding:10px 20px;
+border-radius:6px;
+cursor:pointer;
+}
 
-        @keyframes zoom {
-            0% { transform: scale(0.5); opacity: 0; }
-            60% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); }
-        }
-    </style>
+@keyframes zoom{
+0%{transform:scale(0.5);opacity:0;}
+60%{transform:scale(1.1);opacity:1;}
+100%{transform:scale(1);}
+}
+</style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-    <div class="title">
-        WELCOME TO <br>
-        AME KALYAN MITRO GROUP
-    </div>
+<div class="title">
+WELCOME TO <br>
+AME KALYAN MITRO GROUP
+</div>
 
-    <div class="tagline">
-        🙏 Nayi Soch, Purane Sanskar, Dharam, Seva Aur Ekta Ka Sangam 🙏
-    </div>
+<div class="tagline">
+🙏 Nayi Soch, Purane Sanskar, Dharam, Seva Aur Ekta Ka Sangam 🙏
+</div>
 
-    <div class="divider"></div>
+<div class="divider"></div>
 
-    <div class="sub-heading">
-        MAKE YOUR AKM IDENTITY ✨
-    </div>
+<div class="sub-heading">
+MAKE YOUR AKM IDENTITY ✨
+</div>
 
-    <button class="btn" onclick="goToGenerator()">
-        MAKE MY IMAGE ✨
-    </button>
+<button class="btn" onclick="goToGenerator()">
+MAKE MY IMAGE ✨
+</button>
 
-    <div class="divider"></div>
 
-    <div class="section-title">
-        OUR JIVDAYA ACTIVITY 🐄
-    </div>
+<div class="divider"></div>
 
-    <button class="btn" onclick="goToActivities()">
-        SHOW ACTIVITIES
-    </button>
+<div class="section-title">
+OUR JIVDAYA ACTIVITY 🐄
+</div>
 
-    <div class="divider"></div>
+<button class="btn" onclick="goToActivities()">
+SHOW ACTIVITIES
+</button>
 
-    <div class="section-title">
-        FIND DERASAR 📍
-    </div>
 
-    <button class="btn" onclick="openDerasarPage()">
-        FIND MY DERASAR 📍
-    </button>
+<div class="divider"></div>
 
-    <div class="divider"></div>
+<div class="section-title">
+FIND DERASAR 📍
+</div>
 
-    <div class="section-title">
-        SPIN THE SEVA WHEEL 🎡
-    </div>
+<button class="btn" onclick="openDerasarPage()">
+FIND MY DERASAR 📍
+</button>
 
-    <button class="btn" onclick="openWheel()">
-        SPIN NOW 🎡
-    </button>
 
-    <div class="divider"></div>
+<div class="divider"></div>
 
-    <div class="section-title">
-        NEED HELP 💬
-    </div>
+<div class="section-title">
+SPIN THE SEVA WHEEL 🎡
+</div>
 
-    <button class="btn" onclick="openHelp()">
-        NEED HELP 💬
-    </button>
+<button class="btn" onclick="openWheel()">
+SPIN NOW 🎡
+</button>
 
-    <div class="divider"></div>
 
-    <div class="section-title">
-        ABOUT US 📖
-    </div>
+<div class="divider"></div>
 
-    <button class="btn" onclick="openAbout()">
-        ABOUT US 📖
-    </button>
+<div class="section-title">
+NEED HELP 💬
+</div>
+
+<button class="btn" onclick="openHelp()">
+NEED HELP 💬
+</button>
+
+
+<div class="divider"></div>
+
+<div class="section-title">
+ABOUT US 📖
+</div>
+
+<button class="btn" onclick="openAbout()">
+ABOUT US 📖
+</button>
+
+
+<!-- NEW FEEDBACK SECTION -->
+<div class="divider"></div>
+
+<div class="section-title">
+FEEDBACK ⭐
+</div>
+
+<button class="btn" onclick="openFeedback()">
+GIVE FEEDBACK ⭐
+</button>
 
 </div>
 
-<!-- POPUP -->
+
 <div id="helpPopup" class="popup">
-    <div class="popup-box">
+<div class="popup-box">
 
-        <!-- ✅ ❌ CLOSE BUTTON -->
-        <span class="close-x" onclick="closeHelp()">✖</span>
+<span class="close-x" onclick="closeHelp()">✖</span>
 
-        <h3>Need Help?</h3>
+<h3>Need Help?</h3>
 
-        <input type="text" id="userName" placeholder="Enter your name">
+<input type="text" id="userName" placeholder="Enter your name">
 
-        <button onclick="goWhatsApp()">Continue</button>
-    </div>
+<button onclick="goWhatsApp()">Continue</button>
+
 </div>
+</div>
+
 
 <script>
-function goToGenerator() {
-    window.location.href = "AKM Image Generator.html";
+
+function goToGenerator(){
+window.location.href="AKM Image Generator.html";
 }
 
-function goToActivities() {
-    window.location.href = "activities.html";
+function goToActivities(){
+window.location.href="activities.html";
 }
 
-function openDerasarPage() {
-    window.location.href = "derasar.html";
+function openDerasarPage(){
+window.location.href="derasar.html";
 }
 
-function openWheel() {
-    window.location.href = "seva-wheel.html";
+function openWheel(){
+window.location.href="seva-wheel.html";
 }
 
-function openHelp() {
-    document.getElementById("helpPopup").style.display = "flex";
+function openHelp(){
+document.getElementById("helpPopup").style.display="flex";
 }
 
-function closeHelp() {
-    document.getElementById("helpPopup").style.display = "none";
+function closeHelp(){
+document.getElementById("helpPopup").style.display="none";
 }
 
-function goWhatsApp() {
-    let name = document.getElementById("userName").value;
+function goWhatsApp(){
 
-    if(name.trim() === "") {
-        alert("Please enter your name");
-        return;
-    }
+let name=document.getElementById("userName").value;
 
-    let message = `Hello, my name is ${name}, I want to help for Ame Kalyan Mitro`;
-
-    let url = "https://wa.me/919998143506?text=" + encodeURIComponent(message);
-
-    window.open(url, "_blank");
+if(name.trim()===""){
+alert("Please enter your name");
+return;
 }
 
-function openAbout() {
-    window.location.href = "about.html";
+let message=`Hello, my name is ${name}, I want help for Ame Kalyan Mitro`;
+
+let url="https://wa.me/919998143506?text="+encodeURIComponent(message);
+
+window.open(url,"_blank");
+
 }
+
+function openAbout(){
+window.location.href="about.html";
+}
+
+function openFeedback(){
+window.location.href="feedback.html";
+}
+
 </script>
 
 </body>
