@@ -1,76 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome - AKM</title>
+<title>Welcome - AKM</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BSMGX236C6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BSMGX236C6');
-    </script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BSMGX236C6"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-BSMGX236C6');
+</script>
 
 <style>
 body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom,#fffaf0,#fff5dc);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    text-align:center;
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(to bottom,#fffaf0,#fff5dc);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+text-align:center;
 }
 
 .container{
-    width:90%;
-    max-width:700px;
+width:90%;
+max-width:700px;
+
+/* logo + text zoom animation */
+animation:welcomeZoom 1.8s ease;
+}
+
+.logo{
+width:160px;
+max-width:55%;
+margin-bottom:25px;
+filter:drop-shadow(0 6px 10px rgba(0,0,0,.12));
 }
 
 .title{
-    font-size:38px;
-    font-weight:bold;
-    color:#b36b00;
-    line-height:1.5;
-    margin-bottom:18px;
-    letter-spacing:1px;
+font-size:38px;
+font-weight:bold;
+color:#b36b00;
+line-height:1.5;
+margin-bottom:18px;
+letter-spacing:1px;
 }
 
 .tagline{
-    font-size:24px;
-    color:#8b5a00;
-    margin-bottom:50px;
-    line-height:1.6;
-    font-weight:500;
+font-size:24px;
+color:#8b5a00;
+margin-bottom:50px;
+line-height:1.6;
+font-weight:500;
 }
 
 .btn{
-    padding:18px 38px;
-    font-size:22px;
-    font-weight:bold;
-    background:linear-gradient(to right,#ff9800,#ffb300);
-    border:none;
-    border-radius:14px;
-    color:white;
-    cursor:pointer;
-    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+padding:18px 38px;
+font-size:22px;
+font-weight:bold;
+background:linear-gradient(to right,#ff9800,#ffb300);
+border:none;
+border-radius:14px;
+color:white;
+cursor:pointer;
+box-shadow:0 4px 12px rgba(0,0,0,0.15);
 }
 
 .btn:active{
-    transform:scale(0.96);
+transform:scale(0.96);
+}
+
+@keyframes welcomeZoom{
+0%{
+transform:scale(.65);
+opacity:0;
+}
+60%{
+transform:scale(1.08);
+opacity:1;
+}
+100%{
+transform:scale(1);
+}
 }
 
 @media(max-width:600px){
+
+.logo{
+width:125px;
+}
+
 .title{
 font-size:30px;
 }
+
 .tagline{
 font-size:19px;
 }
+
 .btn{
 font-size:20px;
 padding:16px 32px;
@@ -83,24 +114,26 @@ padding:16px 32px;
 
 <div class="container">
 
-    <div class="title">
-        AME KALYAN MITRO
-    </div>
+<img src="AKMLOGO2.png" class="logo" alt="AKM Logo">
 
-    <div class="tagline">
-        ધરોહર સાથે જોડાઓ,<br>
-        જૈન ધર્મને જીવંત બનાવો
-    </div>
+<div class="title">
+AME KALYAN MITRO
+</div>
 
-    <button class="btn" onclick="goToGenerator()">
-        START ✨
-    </button>
+<div class="tagline">
+ધરોહર સાથે જોડાઓ,<br>
+જૈન ધર્મને જીવંત બનાવો
+</div>
+
+<button class="btn" onclick="goToGenerator()">
+START ✨
+</button>
 
 </div>
 
 <script>
 function goToGenerator(){
-   window.location.href="generator.html";
+window.location.href="generator.html";
 }
 </script>
 
