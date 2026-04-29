@@ -9,8 +9,8 @@
         body {
             margin: 0;
             font-family: Arial;
-            background: black;
-            color: white;
+            background: #fffaf0;
+            color: #3d2b00;
             text-align: center;
         }
 
@@ -28,8 +28,9 @@
             padding: 16px;
             width: 80%;
             border-radius: 12px;
-            border: none;
+            border: 1px solid #d8c08a;
             font-size: 16px;
+            background:#fffdf5;
         }
 
         .btn {
@@ -96,14 +97,12 @@ function getDirections() {
         return;
     }
 
-    // 📱 iPhone / iPad fix
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
         let url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place)}`;
         window.open(url, "_blank");
         return;
     }
 
-    // 🤖 Android / others (with live location)
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
 
