@@ -4,239 +4,247 @@
     <title>Spin the Seva Wheel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-            background: black;
-            color: white;
-            text-align: center;
-        }
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#fffaf0;
+color:#3d2b00;
+text-align:center;
+}
 
-        .container {
-            padding-top: 40px;
-        }
+.container{
+padding-top:40px;
+}
 
-        /* BACK BUTTON */
-        .back-btn {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: black;
-            color: white;
-            padding: 10px 18px;
-            border-radius: 10px;
-            font-size: 14px;
-            cursor: pointer;
-        }
+.back-btn{
+position:absolute;
+top:15px;
+left:15px;
+background:#fff5dc;
+color:#3d2b00;
+padding:10px 18px;
+border-radius:10px;
+font-size:14px;
+cursor:pointer;
+border:1px solid #d8c08a;
+}
 
-        /* ✅ CORRECT ARROW (downward toward wheel) */
-        .arrow {
-            width: 0;
-            height: 0;
-            border-left: 18px solid transparent;
-            border-right: 18px solid transparent;
-            border-top: 30px solid red;
-            margin: auto;
-        }
+.arrow{
+width:0;
+height:0;
+border-left:18px solid transparent;
+border-right:18px solid transparent;
+border-top:30px solid red;
+margin:auto;
+}
 
-        canvas {
-            margin-top: 10px;
-        }
+canvas{
+margin-top:10px;
+}
 
-        .btn {
-            margin-top: 12px;
-            padding: 12px 26px;
-            font-size: 15px;
-            font-weight: bold;
-            background: orange;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            cursor: pointer;
-        }
+.btn{
+margin-top:12px;
+padding:12px 26px;
+font-size:15px;
+font-weight:bold;
+background:orange;
+border:none;
+border-radius:10px;
+color:white;
+cursor:pointer;
+}
 
-        .result {
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #00ffcc;
-        }
-    </style>
+.result{
+margin-top:20px;
+font-size:20px;
+font-weight:bold;
+color:#008060;
+}
+</style>
 </head>
 
 <body>
 
-<!-- BACK BUTTON -->
 <button class="back-btn" onclick="goBack()">← Back</button>
 
 <div class="container">
 
-    <h2>Spin the Seva Wheel</h2>
+<h2>Spin the Seva Wheel</h2>
 
-    <div class="arrow"></div>
+<div class="arrow"></div>
 
-    <canvas id="wheel" width="300" height="300"></canvas>
+<canvas id="wheel" width="300" height="300"></canvas>
 
-    <br>
+<br>
 
-    <button class="btn" onclick="spinWheel()">SPIN NOW</button>
+<button class="btn" onclick="spinWheel()">SPIN NOW</button>
 
-    <div class="result" id="result"></div>
+<div class="result" id="result"></div>
 
-    <button class="btn" onclick="shareSeva()">SHARE ON WHATSAPP</button>
-    <button class="btn" onclick="completeSeva()">I COMPLETED THIS SEVA</button>
+<button class="btn" onclick="shareSeva()">SHARE ON WHATSAPP</button>
+<button class="btn" onclick="completeSeva()">I COMPLETED THIS SEVA</button>
 
 </div>
 
 <script>
 const options = [
-    "Visit a Derasar today",
-    "Donate us for Jivdaya",
-    "Feed animals (Jivdaya)",
-    "Do Navkar Mantra 21 times",
-    "Avoid anger today",
-    "Help someone without expectation",
-    "Drink boiled water only today"
+"Visit a Derasar today",
+"Donate us for Jivdaya",
+"Feed animals (Jivdaya)",
+"Do Navkar Mantra 21 times",
+"Avoid anger today",
+"Help someone without expectation",
+"Drink boiled water only today"
 ];
 
-const colors = ["#ff5733","#33ff57","#3357ff","#ff33a8","#ffd633","#33fff2"];
+/* clearer alternating colors */
+const colors = [
+"#ff9933",
+"#4caf50",
+"#4285f4",
+"#e91e63",
+"#ffc107",
+"#009688",
+"#9c27b0"
+];
 
-let startAngle = 0;
-let spinTimeout = null;
-let spinAngleStart = 0;
-let spinTime = 0;
-let spinTimeTotal = 0;
+let startAngle=0;
+let spinTimeout=null;
+let spinAngleStart=0;
+let spinTime=0;
+let spinTimeTotal=0;
 
-const ctx = document.getElementById("wheel").getContext("2d");
+const ctx=document.getElementById("wheel").getContext("2d");
 
-function drawText(text, x, y, maxWidth, lineHeight) {
-    let words = text.split(" ");
-    let line = "";
-    let lines = [];
+function drawText(text,x,y,maxWidth,lineHeight){
+let words=text.split(" ");
+let line="";
+let lines=[];
 
-    for (let n = 0; n < words.length; n++) {
-        let testLine = line + words[n] + " ";
-        let testWidth = ctx.measureText(testLine).width;
+for(let n=0;n<words.length;n++){
+let testLine=line+words[n]+" ";
+let testWidth=ctx.measureText(testLine).width;
 
-        if (testWidth > maxWidth && n > 0) {
-            lines.push(line);
-            line = words[n] + " ";
-        } else {
-            line = testLine;
-        }
-    }
-    lines.push(line);
+if(testWidth>maxWidth && n>0){
+lines.push(line);
+line=words[n]+" ";
+}
+else{
+line=testLine;
+}
+}
+lines.push(line);
 
-    for (let i = 0; i < lines.length; i++) {
-        ctx.fillText(lines[i].trim(), x, y + (i * lineHeight));
-    }
+for(let i=0;i<lines.length;i++){
+ctx.fillText(lines[i].trim(),x,y+(i*lineHeight));
+}
 }
 
-function drawWheel() {
-    const arc = Math.PI / (options.length / 2);
-    ctx.clearRect(0,0,300,300);
+function drawWheel(){
+const arc=Math.PI/(options.length/2);
+ctx.clearRect(0,0,300,300);
 
-    for (let i = 0; i < options.length; i++) {
-        const angle = startAngle + i * arc;
+for(let i=0;i<options.length;i++){
+const angle=startAngle+i*arc;
 
-        ctx.fillStyle = colors[i];
+ctx.fillStyle=colors[i];
 
-        ctx.beginPath();
-        ctx.arc(150, 150, 150, angle, angle + arc);
-        ctx.arc(150, 150, 0, angle + arc, angle, true);
-        ctx.fill();
+ctx.beginPath();
+ctx.arc(150,150,150,angle,angle+arc);
+ctx.arc(150,150,0,angle+arc,angle,true);
+ctx.fill();
 
-        ctx.save();
-        ctx.fillStyle = "white";
-        ctx.translate(150, 150);
-        ctx.rotate(angle + arc / 2);
+ctx.save();
+ctx.fillStyle="white";
+ctx.translate(150,150);
+ctx.rotate(angle+arc/2);
 
-        ctx.font = "bold 12px Arial";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
+/* BOLDER BIGGER TEXT */
+ctx.font="900 14px Arial";
+ctx.textAlign="center";
+ctx.textBaseline="middle";
 
-        drawText(options[i], 90, -10, 120, 14);
+drawText(options[i],90,-12,125,16);
 
-        ctx.restore();
-    }
+ctx.restore();
+}
 }
 
-function spinWheel() {
-    spinAngleStart = Math.random() * 20 + 20;
-    spinTime = 0;
-    spinTimeTotal = Math.random() * 3000 + 4000;
-    rotateWheel();
+function spinWheel(){
+spinAngleStart=Math.random()*20+20;
+spinTime=0;
+spinTimeTotal=Math.random()*3000+4000;
+rotateWheel();
 }
 
-function rotateWheel() {
-    spinTime += 30;
+function rotateWheel(){
+spinTime+=30;
 
-    if (spinTime >= spinTimeTotal) {
-        stopRotateWheel();
-        return;
-    }
-
-    const spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
-    startAngle += (spinAngle * Math.PI / 180);
-    drawWheel();
-
-    spinTimeout = setTimeout(rotateWheel, 30);
+if(spinTime>=spinTimeTotal){
+stopRotateWheel();
+return;
 }
 
-function stopRotateWheel() {
-    clearTimeout(spinTimeout);
+const spinAngle=spinAngleStart-easeOut(spinTime,0,spinAngleStart,spinTimeTotal);
+startAngle+=(spinAngle*Math.PI/180);
+drawWheel();
 
-    const degrees = startAngle * 180 / Math.PI + 90;
-    const arcd = 360 / options.length;
-    const index = Math.floor((360 - degrees % 360) / arcd);
-
-    document.getElementById("result").innerText = options[index];
+spinTimeout=setTimeout(rotateWheel,30);
 }
 
-function shareSeva() {
-    let seva = document.getElementById("result").innerText;
+function stopRotateWheel(){
+clearTimeout(spinTimeout);
 
-    if (!seva) {
-        alert("Spin first");
-        return;
-    }
+const degrees=startAngle*180/Math.PI+90;
+const arcd=360/options.length;
+const index=Math.floor((360-degrees%360)/arcd);
 
-    let msg = "In spin I got " + seva + " seva\n" +
-              "You try and ask me what seva you got\n" +
-              "https://amemitroofficial-alt.github.io/AKM/";
-
-    window.open("https://wa.me/?text=" + encodeURIComponent(msg));
+document.getElementById("result").innerText=options[index];
 }
 
-function completeSeva() {
-    let seva = document.getElementById("result").innerText;
+function shareSeva(){
+let seva=document.getElementById("result").innerText;
 
-    if (!seva) {
-        alert("Spin first");
-        return;
-    }
-
-    confetti({
-        particleCount: 150,
-        spread: 80,
-        origin: { y: 0.6 }
-    });
-
-    alert("You completed your seva");
+if(!seva){
+alert("Spin first");
+return;
 }
 
-function easeOut(t, b, c, d) {
-    const ts = (t /= d) * t;
-    const tc = ts * t;
-    return b + c * (tc + -3 * ts + 3 * t);
+let msg="In spin I got "+seva+" seva\n"+
+"You try and ask me what seva you got\n"+
+"https://amemitroofficial-alt.github.io/AKM/";
+
+window.open("https://wa.me/?text="+encodeURIComponent(msg));
 }
 
-/* BACK FUNCTION */
-function goBack() {
-    window.history.back();
+function completeSeva(){
+let seva=document.getElementById("result").innerText;
+
+if(!seva){
+alert("Spin first");
+return;
+}
+
+confetti({
+particleCount:150,
+spread:80,
+origin:{y:0.6}
+});
+
+alert("You completed your seva");
+}
+
+function easeOut(t,b,c,d){
+const ts=(t/=d)*t;
+const tc=ts*t;
+return b+c*(tc+-3*ts+3*t);
+}
+
+function goBack(){
+window.history.back();
 }
 
 drawWheel();
