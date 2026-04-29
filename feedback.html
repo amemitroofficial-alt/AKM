@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Feedback</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+margin:0;
+background:black;
+font-family:Arial;
+color:white;
+text-align:center;
+}
+
+.container{
+padding-top:70px;
+width:90%;
+max-width:500px;
+margin:auto;
+animation:fadein 1s ease;
+}
+
+h1{
+font-size:32px;
+margin-bottom:15px;
+}
+
+p{
+color:#ccc;
+font-size:18px;
+line-height:1.6;
+}
+
+textarea{
+margin-top:30px;
+width:90%;
+height:220px;
+padding:18px;
+font-size:18px;
+border:none;
+border-radius:14px;
+outline:none;
+resize:none;
+}
+
+button{
+margin-top:30px;
+padding:16px 34px;
+font-size:20px;
+font-weight:bold;
+background:orange;
+color:white;
+border:none;
+border-radius:12px;
+cursor:pointer;
+box-shadow:0 5px 0 #c97a00;
+}
+
+button:active{
+transform:scale(0.95);
+}
+
+@keyframes fadein{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Feedback & Suggestions ⭐</h1>
+
+<p>
+Write your feedback or suggestions below.
+We would love to hear from you.
+</p>
+
+<form action="/feedback" method="POST">
+
+<textarea
+name="feedback_msg"
+placeholder="Write your feedback or suggestions here..."
+required>
+</textarea>
+
+<br>
+
+<button type="submit">
+Submit Feedback
+</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
