@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AKM - Welcome</title>
-
+<title>AKM - Welcome</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -12,11 +11,31 @@ font-family:Arial;
 background:linear-gradient(to bottom,#fffaf0,#fff5dc);
 color:#3d2b00;
 text-align:center;
+position:relative;
+overflow-x:hidden;
+}
+
+/* Transparent background logo watermark */
+body::before{
+content:"";
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:320px;
+height:320px;
+background:url('AKMLOGO2.png') no-repeat center;
+background-size:contain;
+opacity:0.06;   /* transparent effect */
+z-index:0;
+pointer-events:none;
 }
 
 .container{
 padding-top:60px;
 animation:zoom 1.5s ease;
+position:relative;
+z-index:2;
 }
 
 .title{
@@ -29,7 +48,7 @@ line-height:1.5;
 margin-top:10px;
 font-size:14px;
 color:#7a5a00;
-font-weight:700; /* BOLD ADDED */
+font-weight:700;
 }
 
 .divider{
@@ -76,6 +95,7 @@ height:100%;
 background:rgba(0,0,0,0.7);
 justify-content:center;
 align-items:center;
+z-index:999;
 }
 
 .popup-box{
@@ -120,8 +140,14 @@ cursor:pointer;
 60%{transform:scale(1.1);opacity:1;}
 100%{transform:scale(1);}
 }
-</style>
 
+@media(max-width:600px){
+body::before{
+width:240px;
+height:240px;
+}
+}
+</style>
 </head>
 
 <body>
@@ -257,9 +283,7 @@ return;
 }
 
 let message=`Hello, my name is ${name}, I want help for Ame Kalyan Mitro`;
-
 let url="https://wa.me/919998143506?text="+encodeURIComponent(message);
-
 window.open(url,"_blank");
 }
 
