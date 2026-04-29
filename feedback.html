@@ -1,76 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Feedback</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback</title>
 
 <style>
-
 body{
 margin:0;
 background:black;
-font-family:Arial;
 color:white;
+font-family:Arial;
 text-align:center;
 }
 
 .container{
-padding-top:70px;
+padding-top:60px;
 width:90%;
 max-width:500px;
 margin:auto;
-animation:fadein 1s ease;
 }
 
 h1{
 font-size:32px;
-margin-bottom:15px;
 }
 
 p{
 color:#ccc;
 font-size:18px;
-line-height:1.6;
+}
+
+input, textarea, select{
+width:90%;
+padding:16px;
+margin-top:20px;
+border:none;
+border-radius:12px;
+font-size:18px;
 }
 
 textarea{
-margin-top:30px;
-width:90%;
-height:220px;
-padding:18px;
-font-size:18px;
-border:none;
-border-radius:14px;
-outline:none;
+height:180px;
 resize:none;
 }
 
 button{
 margin-top:30px;
 padding:16px 34px;
-font-size:20px;
-font-weight:bold;
 background:orange;
 color:white;
+font-size:20px;
+font-weight:bold;
 border:none;
 border-radius:12px;
 cursor:pointer;
-box-shadow:0 5px 0 #c97a00;
-}
-
-button:active{
-transform:scale(0.95);
-}
-
-@keyframes fadein{
-from{
-opacity:0;
-transform:translateY(30px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
 }
 
 </style>
@@ -82,18 +64,38 @@ transform:translateY(0);
 
 <h1>Feedback & Suggestions ⭐</h1>
 
-<p>
-Write your feedback or suggestions below.
-We would love to hear from you.
-</p>
+<p>We would love to hear from you</p>
 
-<form action="/feedback" method="POST">
+
+<form
+action="https://docs.google.com/forms/d/e/1FAIpQLSfx9vnFHuVqYBlAAnZ2V3adRs12g_HQdSeu9Q57Qkms7wCHEQ/formResponse"
+method="POST"
+target="hidden_iframe"
+onsubmit="submitted=true;thankyou();"
+>
+
+<input
+type="text"
+name="entry.570567093"
+placeholder="Enter Your Name"
+required
+>
+
 
 <textarea
-name="feedback_msg"
-placeholder="Write your feedback or suggestions here..."
+name="entry.2064258423"
+placeholder="Write feedback or suggestions..."
 required>
 </textarea>
+
+
+<select name="entry.2009331882">
+<option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+<option value="4">⭐⭐⭐⭐ Good</option>
+<option value="3">⭐⭐⭐ Average</option>
+<option value="2">⭐⭐ Poor</option>
+<option value="1">⭐ Very Poor</option>
+</select>
 
 <br>
 
@@ -103,7 +105,17 @@ Submit Feedback
 
 </form>
 
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+
 </div>
+
+<script>
+function thankyou(){
+setTimeout(function(){
+alert("Thank You For Your Feedback 🙏");
+},1000);
+}
+</script>
 
 </body>
 </html>
