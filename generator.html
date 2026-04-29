@@ -3,7 +3,7 @@
 <head>
     <title>AKM - Welcome</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
@@ -29,6 +29,7 @@ line-height:1.5;
 margin-top:10px;
 font-size:14px;
 color:#7a5a00;
+font-weight:700; /* BOLD ADDED */
 }
 
 .divider{
@@ -146,7 +147,6 @@ MAKE YOUR AKM IDENTITY ✨
 MAKE MY IMAGE ✨
 </button>
 
-
 <div class="divider"></div>
 
 <div class="section-title">
@@ -156,7 +156,6 @@ OUR JIVDAYA ACTIVITY 🐄
 <button class="btn" onclick="goToActivities()">
 SHOW ACTIVITIES
 </button>
-
 
 <div class="divider"></div>
 
@@ -168,7 +167,6 @@ FIND DERASAR 📍
 FIND MY DERASAR 📍
 </button>
 
-
 <div class="divider"></div>
 
 <div class="section-title">
@@ -178,7 +176,6 @@ SPIN THE SEVA WHEEL 🎡
 <button class="btn" onclick="openWheel()">
 SPIN NOW 🎡
 </button>
-
 
 <div class="divider"></div>
 
@@ -190,7 +187,6 @@ NEED HELP 💬
 NEED HELP 💬
 </button>
 
-
 <div class="divider"></div>
 
 <div class="section-title">
@@ -200,7 +196,6 @@ ABOUT US 📖
 <button class="btn" onclick="openAbout()">
 ABOUT US 📖
 </button>
-
 
 <div class="divider"></div>
 
@@ -213,7 +208,6 @@ GIVE FEEDBACK ⭐
 </button>
 
 </div>
-
 
 <div id="helpPopup" class="popup">
 <div class="popup-box">
@@ -229,9 +223,7 @@ GIVE FEEDBACK ⭐
 </div>
 </div>
 
-
 <script>
-
 function goToGenerator(){
 window.location.href="AKM Image Generator.html";
 }
@@ -257,7 +249,6 @@ document.getElementById("helpPopup").style.display="none";
 }
 
 function goWhatsApp(){
-
 let name=document.getElementById("userName").value;
 
 if(name.trim()===""){
@@ -270,7 +261,6 @@ let message=`Hello, my name is ${name}, I want help for Ame Kalyan Mitro`;
 let url="https://wa.me/919998143506?text="+encodeURIComponent(message);
 
 window.open(url,"_blank");
-
 }
 
 function openAbout(){
@@ -280,7 +270,6 @@ window.location.href="about.html";
 function openFeedback(){
 window.location.href="feedback.html";
 }
-
 </script>
 
 </body>
