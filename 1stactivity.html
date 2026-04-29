@@ -8,14 +8,14 @@
         body {
             margin: 0;
             font-family: Arial;
-            background: black;
-            color: white;
+            background: #fffaf0;
+            color: #3d2b00;
             text-align: center;
         }
 
         .container {
             padding: 20px 10px;
-            margin-top: 60px; /* FIX: content niche laaya */
+            margin-top: 60px;
         }
 
         .title {
@@ -25,7 +25,7 @@
 
         .sub-title {
             font-size: 15px;
-            color: #ddd;
+            color: #5f4a1f;
             margin: 15px 0;
             line-height: 1.6;
         }
@@ -47,20 +47,19 @@
             margin: 10px;
         }
 
-        /* BACK BUTTON */
         .back-btn {
             position: absolute;
             top: 15px;
             left: 15px;
-            background: black;
-            color: white;
+            background: #fff5dc;
+            color: #3d2b00;
             padding: 10px 18px;
             border-radius: 10px;
             font-size: 14px;
             cursor: pointer;
+            border:1px solid #d8c08a;
         }
 
-        /* FULLSCREEN MODAL */
         #videoModal {
             display: none;
             position: fixed;
@@ -92,7 +91,6 @@
 
 <body>
 
-<!-- BACK BUTTON -->
 <button class="back-btn" onclick="goBack()">← Back</button>
 
 <div class="container">
@@ -106,15 +104,12 @@
         આ અમારી પ્રથમ જીવદયા પ્રવૃત્તિ હતી.
     </div>
 
-    <!-- FIRST VIDEO BUTTON -->
     <button class="btn" onclick="openVideo1()">WATCH 1st VIDEO 🎥</button>
 
-    <!-- SECOND VIDEO BUTTON -->
     <button class="btn" onclick="openVideo2()">WATCH 2nd VIDEO 🎥</button>
 
 </div>
 
-<!-- VIDEO MODAL -->
 <div id="videoModal">
     <span class="closeBtn" onclick="closeVideo()">✖</span>
 
@@ -144,7 +139,6 @@ function closeVideo() {
     document.getElementById("videoFrame").src = "";
 }
 
-/* BACK FUNCTION */
 function goBack() {
     window.history.back();
 }
